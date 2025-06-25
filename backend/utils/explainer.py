@@ -1,56 +1,32 @@
 import re
 from collections import Counter
 from utils.skill_extractor import extract_skills
-import spacy
-from models import db
-nlp = spacy.load("en_core_web_sm")
-
-def extract_experience(text):
-    matches = re.findall(r'(\d+)\+?\s+(years|yrs)', text.lower())
-    return int(matches[0][0]) if matches else None
-
-def extract_role(text):
-    doc = nlp(text.lower())
-    roles = ["data scientist", "backend developer", "frontend engineer", "full stack developer", "ml engineer", "sde", "software developer"]
-    for role in roles:
-        if role in text.lower():
-            return role
-    return "unspecified"
 
 def generate_explanation(jd_text, resume_text):
-    jd_skills = extract_skills(jd_text, top_n=20)
-    resume_skills = extract_skills(resume_text, top_n=20)
+    jd_skills = extract_skills(jd_text)
+    resume_skills = extract_skills(resume_text)
 
-    resume_word_count = Counter(resume_text.lower().split())
-    skill_freq = {skill: resume_word_count.get(skill.lower(), 0) for skill in jd_skills}
+    jd_set = set(jd_skills)
+    res_set = set(resume_skills)
 
-    matched = [skill for skill in jd_skills if skill in resume_skills]
-    missing = [skill for skill in jd_skills if skill not in resume_skills]
+    matched = sorted(jd_set & res_set)
+    missing = sorted(jd_set - res_set)
 
-    explanation = {
-        "skills_matched": matched,
-        "skills_missing": missing,
-        "skills_frequency": skill_freq,
-        "jd_experience_required": extract_experience(jd_text),
-        "resume_experience_found": extract_experience(resume_text),
-        "jd_role": extract_role(jd_text),
-        "resume_role": extract_role(resume_text),
-        "highlights_found": extract_highlights(resume_text)
-    }
-
-    return explanation
-
-def extract_highlights(resume_text):
-    lines = resume_text.splitlines()
+    # Highlight sentences in resume that mention matched skills
     highlights = []
+    for line in resume_text.split('\n'):
+        lower_line = line.lower()
+        if any(skill in lower_line for skill in matched):
+            highlights.append(line.strip())
 
-    for line in lines:
-        l = line.lower()
-        if any(keyword in l for keyword in ["certified", "certification", "completed", "credential"]):
-            highlights.append(f"🎓 {line.strip()}")
-        elif any(keyword in l for keyword in ["worked on", "implemented", "built", "created", "led"]):
-            highlights.append(f"🛠️ {line.strip()}")
-        elif any(keyword in l for keyword in ["trained", "attended", "mentored", "contributed"]):
-            highlights.append(f"📌 {line.strip()}")
+    # Word-level overlap (frequency based insight)
+    jd_words = re.findall(r'\w+', jd_text.lower())
+    res_words = re.findall(r'\w+', resume_text.lower())
+    word_match_count = sum(1 for word in set(jd_words) if word in res_words)
 
-    return highlights[:5]  # Limit to top 5 highlights for clarity
+    return {
+        "summary": f"{len(matched)} matched, {len(missing)} missing — {word_match_count} words aligned.",
+        "skills_matched": matched[:15],
+        "skills_missing": missing[:10],
+        "resume_highlights": highlights[:5]
+    }

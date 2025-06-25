@@ -3,6 +3,7 @@ from datetime import datetime
 
 db = SQLAlchemy()
 
+# ─────────────── USERS ────────────────
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -10,6 +11,7 @@ class User(db.Model):
     role = db.Column(db.String, nullable=False)  # 'recruiter' or 'ar'
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+# ─────────────── JOB DESCRIPTIONS ────────────────
 class JD(db.Model):
     __tablename__ = 'jd'
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +20,7 @@ class JD(db.Model):
     project_code = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+# ─────────────── LEGACY RESUME (optional) ────────────────
 class Resume(db.Model):
     __tablename__ = 'resume'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,15 +28,30 @@ class Resume(db.Model):
     file_path = db.Column(db.String, nullable=False)
     uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+# ─────────────── CONSULTANT PROFILE ────────────────
+class Profile(db.Model):
+    __tablename__ = 'profile'
+    id = db.Column(db.Integer, primary_key=True)
+    emp_id = db.Column(db.String, unique=True, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    vertical = db.Column(db.String)
+    skills = db.Column(db.Text)
+    experience_years = db.Column(db.Float)
+    resume_path = db.Column(db.String)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+# ─────────────── MATCH RESULTS ────────────────
 class MatchResult(db.Model):
     __tablename__ = 'match_result'
     id = db.Column(db.Integer, primary_key=True)
     jd_id = db.Column(db.Integer, db.ForeignKey('jd.id'))
-    resume_id = db.Column(db.Integer, db.ForeignKey('resume.id'))
+    profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
+    resume_id = db.Column(db.Integer, db.ForeignKey('resume.id'), nullable=True)  # legacy support
     score = db.Column(db.Float)
     explanation = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+# ─────────────── EMAIL LOG ────────────────
 class EmailLog(db.Model):
     __tablename__ = 'email_log'
     id = db.Column(db.Integer, primary_key=True)
@@ -44,6 +62,7 @@ class EmailLog(db.Model):
     sent_at = db.Column(db.DateTime, default=datetime.utcnow)
     pdf_path = db.Column(db.String)
 
+# ─────────────── FEEDBACK ────────────────
 class Feedback(db.Model):
     __tablename__ = 'feedback'
     id = db.Column(db.Integer, primary_key=True)
@@ -52,11 +71,3 @@ class Feedback(db.Model):
     given_by = db.Column(db.String)
     vote = db.Column(db.String)  # 'up' or 'down'
     submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-class BulkUploadMeta(db.Model):
-    __tablename__ = 'bulk_upload_meta'
-    id = db.Column(db.Integer, primary_key=True)
-    jd_id = db.Column(db.Integer)
-    recruiter_email = db.Column(db.String)
-    manager_email = db.Column(db.String)
-    uploaded_at = db.Column(db.DateTime, default=datetime.utcnow)

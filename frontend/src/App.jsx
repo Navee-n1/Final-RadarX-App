@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white font-sans">
       {/* Fixed Top Header */}
-      <header className="sticky top-3 z-50 bg-black border-b border-gray-700 px-6 py-5 flex justify-between items-center shadow-lg">
+      <header className="sticky top-1 z-10 bg-black border-b border-gray-700 px-6 py-5 flex justify-between items-center shadow-lg">
         <h1 className="text-xl font-bold text-accent">RadarX</h1>
         <div className="space-x-4">
           <button

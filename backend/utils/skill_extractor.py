@@ -1,27 +1,35 @@
+import re
 import spacy
-from keybert import KeyBERT
-from models import db
+from nltk.corpus import stopwords
 
 nlp = spacy.load("en_core_web_sm")
-kw_model = KeyBERT()
+stop_words = set(stopwords.words("english"))
 
-def extract_skills(text, top_n=15):
-    """
-    Extract dynamic, open-domain skills from JD or resume text.
-    Returns high-relevance noun phrases and skill terms.
-    """
-    text = text.strip().replace("\n", " ")
-    keywords = kw_model.extract_keywords(text, keyphrase_ngram_range=(1, 3), stop_words='english', top_n=top_n)
-    extracted = set()
+# Optional: Words we don’t want as skills
+NOISE_WORDS = {"team", "project", "solution", "experience", "technologies", "development", "ability"}
 
-    # Add spaCy noun chunks
+def extract_skills(text):
     doc = nlp(text)
+    tokens = [token.text.lower() for token in doc if not token.is_punct and not token.is_space]
+    
+    # Phase 1: Extract noun chunks (likely skill phrases)
+    skill_phrases = set()
     for chunk in doc.noun_chunks:
-        if len(chunk.text) > 2 and not chunk.text.lower() in extracted:
-            extracted.add(chunk.text.lower())
+        phrase = chunk.text.strip().lower()
+        if (
+            1 < len(phrase) < 50
+            and not any(word in stop_words for word in phrase.split())
+            and not any(n in NOISE_WORDS for n in phrase.split())
+        ):
+            skill_phrases.add(phrase)
 
-    # Add KeyBERT results
-    for kw, _ in keywords:
-        extracted.add(kw.lower())
+    # Phase 2: Regex tech filters (common formats like React.js, C++, etc.)
+    tech_keywords = set()
+    for token in tokens:
+        if re.match(r'^[a-zA-Z0-9+#.-]{2,}$', token):
+            if token not in stop_words and len(token) > 2:
+                tech_keywords.add(token)
 
-    return sorted(list(extracted))
+    # Combine and return structured
+    combined = skill_phrases.union(tech_keywords)
+    return sorted(combined)

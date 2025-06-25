@@ -7,6 +7,8 @@ from models import db
 from routes.upload_routes import upload_bp
 from routes.match_routes import match_bp
 from routes.email_routes import email_bp 
+from routes.profile_routes import profile_bp
+
 
 load_dotenv()
 
@@ -25,6 +27,7 @@ db.init_app(app)
 app.register_blueprint(upload_bp)
 app.register_blueprint(match_bp)
 app.register_blueprint(email_bp)
+app.register_blueprint(profile_bp)
 
 
 
