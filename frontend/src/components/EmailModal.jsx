@@ -1,69 +1,94 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
+import { Plus, Minus, Send, X } from 'lucide-react';
 
-export default function EmailModal({ jdId, onClose }) {
-  const [toEmail, setToEmail] = useState('')
-  const [cc, setCc] = useState('')
-  const [sending, setSending] = useState(false)
-  const [status, setStatus] = useState(null)
+export default function EmailModal({ toEmail, cc, setCc, onSend, onClose }) {
+  const [newCc, setNewCc] = useState('');
+  const ccArray = cc.split(',').map(e => e.trim()).filter(Boolean);
 
- 
+  const handleAddCc = () => {
+    if (newCc && !ccArray.includes(newCc)) {
+      setCc([...ccArray, newCc].join(', '));
+      setNewCc('');
+    }
+  };
 
-const sendEmail = async (jdId, toEmail, ccList, topMatches) => {
-  const res = await axios.post("http://127.0.0.1:5000/send-email", {
-    jd_id: jdId,
-    to: toEmail,
-    cc: ccList, // Array like ["hr@hexaware.com"]
-  });
-  alert(res.data.message);
-};
+  const handleRemoveCc = (email) => {
+    const filtered = ccArray.filter(c => c !== email);
+    setCc(filtered.join(', '));
+  };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-      <div className="bg-[#1f1f1f] text-white rounded-xl p-8 w-full max-w-md shadow-lg">
-        <h2 className="text-xl font-bold mb-4">📧 Send Email – JD {jdId}</h2>
+    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 transition-all duration-300">
+      <div className="relative max-w-md w-full bg-[#111111] text-white border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-lg transition-all duration-300">
+        
+        {/* Close */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-400 hover:text-red-400"
+        >
+          <X size={20} />
+        </button>
 
-        <label className="block mb-2 font-medium">To (Recruiter Email):</label>
-        <input
-          type="email"
-          value={toEmail}
-          onChange={(e) => setToEmail(e.target.value)}
-          className="w-full p-2 rounded bg-gray-800 mb-4 border border-gray-700"
-          placeholder="recruiter@example.com"
-        />
+        <h2 className="text-xl font-bold mb-4">📧 Send Matching Results</h2>
 
-        <label className="block mb-2 font-medium">CC (comma-separated):</label>
-        <input
-          type="text"
-          value={cc}
-          onChange={(e) => setCc(e.target.value)}
-          className="w-full p-2 rounded bg-gray-800 mb-4 border border-gray-700"
-          placeholder="manager@example.com,hr@example.com"
-        />
-
-        <div className="flex justify-end gap-4">
-          <button
-            onClick={onClose}
-            className="text-sm text-gray-400 hover:underline"
-          >
-            Cancel
-          </button>
-
-          <button
-            onClick={sendEmail}
-            disabled={sending || !toEmail}
-            className="bg-accent text-black font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-cyan-400 disabled:opacity-50"
-          >
-            {sending ? 'Sending...' : 'Send Email'}
-          </button>
+        {/* To Email */}
+        <div className="mb-4">
+          <label className="text-sm text-gray-400">To</label>
+          <input
+            type="email"
+            value={toEmail}
+            readOnly
+            className="w-full mt-1 px-4 py-2 rounded bg-gray-900 border border-gray-600 text-sm text-gray-300 cursor-not-allowed"
+          />
         </div>
 
-        {status && (
-          <div className="mt-4 text-sm font-medium text-green-400">
-            {status}
+        {/* CC */}
+        <div className="mb-4">
+          <label className="text-sm text-gray-400">CC</label>
+          <div className="flex gap-2 mt-1">
+            <input
+              type="text"
+              value={newCc}
+              onChange={(e) => setNewCc(e.target.value)}
+              placeholder="Add email"
+              className="flex-1 px-3 py-2 rounded bg-gray-900 border border-gray-600 text-sm text-white"
+            />
+            <button
+              onClick={handleAddCc}
+              className="bg-cyan-400 text-black px-3 rounded hover:bg-cyan-300 transition"
+            >
+              <Plus size={16} />
+            </button>
           </div>
-        )}
+          <div className="mt-3 flex flex-wrap gap-2">
+            {ccArray.map((email, i) => (
+              <span
+                key={i}
+                className="bg-gray-700 text-sm px-3 py-1 rounded flex items-center gap-1 text-white"
+              >
+                {email}
+                <button onClick={() => handleRemoveCc(email)}>
+                  <Minus size={14} className="text-red-400" />
+                </button>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Send Button */}
+        <div className="pt-4">
+          <button
+            onClick={async () => {
+              await onSend();
+              onClose(); // Close only after sending
+            }}
+            className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white py-3 rounded-xl flex items-center justify-center gap-2 font-semibold transition-all duration-300"
+          >
+            <Send size={18} />
+            Send Email
+          </button>
+        </div>
       </div>
     </div>
-  )
+  );
 }

@@ -32,10 +32,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white font-sans">
-      <header className="sticky top-3 z-50 bg-black border-b border-gray-700 px-6 py-5 flex justify-between items-center shadow-lg">
-        <h1 className="text-xl font-bold text-accent">RadarX</h1>
-      </header>
- 
+      
       {/* 👇 Routing based on login */}
       {!role ? (
       <LoginPage onLogin={handleLogin} />
@@ -47,9 +44,7 @@ function App() {
       <p className="text-center mt-10">❌ Unknown role</p>
       )}
  
-      <footer className="text-center text-xs text-gray-500 py-6 border-t border-gray-700 mt-16">
-        Built with ❤️ by <span className="text-accent font-semibold">House of Starks</span>
-      </footer>
+      
     </div>
   );
 }

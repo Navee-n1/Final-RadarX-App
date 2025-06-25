@@ -1,215 +1,213 @@
-import React, { useState } from 'react'
-import ResumeMatchSection from '../components/ResumeMatchSection'
-import OneToOneMatchSection from '../components/OneToOneMatchSection'
-import axios from 'axios'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState } from 'react';
+import axios from 'axios';
+import ResumeMatchSection from '../components/ResumeMatchSection';
+import OneToOneMatchSection from '../components/OneToOneMatchSection';
+import LiveTracker from '../components/LiveTracker';
+import TopMatchCard from '../components/TopMatchCard';
+import EmailModal from '../components/EmailModal';
 
-export default function ARRequestorDashboard({onLogout}) {
-  const [activeSection, setActiveSection] = useState('upload')
-  const [jdFile, setJdFile] = useState(null)
-  const [jdId, setJdId] = useState(null)
-  const [status, setStatus] = useState('')
-  const [loading, setLoading] = useState(false)
+export default function ARRequestorDashboard({ onLogout }) {
+  const [activeSection, setActiveSection] = useState('upload');
+  const [jdFile, setJdFile] = useState(null);
+  const [jdId, setJdId] = useState(null);
+  const [jdTitle, setJdTitle] = useState('');
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState({
     compared: false,
     ranked: false,
     emailed: false,
-  })
-  const [toEmail, setToEmail] = useState('')
-  const [cc, setCc] = useState('')
-  const [topMatches, setTopMatches] = useState([])
+  });
+  const [topMatches, setTopMatches] = useState([]);
+  const [cc, setCc] = useState('');
+  const [emailSent, setEmailSent] = useState(false);
 
-  const handleFileChange = (e) => setJdFile(e.target.files[0])
+  const userEmail = localStorage.getItem('email');
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setJdFile(file);
+    setJdTitle(file?.name.replace(/\.[^/.]+$/, '') || 'HEX-JD-BULK');
+  };
 
   const uploadJD = async () => {
-    if (!jdFile) return
-    setLoading(true)
-    const formData = new FormData()
-    formData.append('file', jdFile)
-    formData.append('uploaded_by', 'ar@hexaware.com')
-    formData.append('project_code', 'HEX-JD-BULK')
-    const res = await axios.post('http://127.0.0.1:5000/upload-jd', formData)
-    setJdId(res.data.jd_id)
-    setProgress(p => ({ ...p, compared: true }))
-    setStatus('✅ JD uploaded. Matching resumes...')
-    runMatching(res.data.jd_id)
-  }
+    if (!jdFile) return;
+    setLoading(true);
+    const formData = new FormData();
+    formData.append('file', jdFile);
+    formData.append('uploaded_by', userEmail || 'ar@hexaware.com');
+    formData.append('project_code', jdTitle);
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/upload-jd', formData);
+      const newJdId = res.data.jd_id;
+      setJdId(newJdId);
+      setProgress((p) => ({ ...p, compared: true }));
+      runMatching(newJdId);
+    } catch (err) {
+      alert('❌ JD upload failed');
+    }
+  };
 
   const runMatching = async (jdId) => {
-    const res = await axios.post('http://127.0.0.1:5000/match/jd-to-resumes', { jd_id: jdId })
-    if (res.data.top_matches && res.data.top_matches.length > 0) {
-      setTopMatches(res.data.top_matches)
-      setProgress(p => ({ ...p, ranked: true }))
-      setStatus('✅ Profiles ranked. Recruiter notified.')
-    } else {
-      setStatus('⚠️ No matches found.')
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/match/jd-to-resumes', { jd_id: jdId });
+      if (res.data.top_matches?.length) {
+        setTopMatches(res.data.top_matches);
+        setProgress((p) => ({ ...p, ranked: true, emailed: true }));
+      } else {
+        alert('⚠️ No matches found.');
+      }
+    } catch (err) {
+      alert('❌ Matching failed');
+    } finally {
+      setLoading(false);
     }
-    setProgress(p => ({ ...p, emailed: true }))
-    setLoading(false)
-  }
+  };
 
   const handleSendEmail = async () => {
-    if (!toEmail) return alert("To email required")
     try {
-      const res = await axios.post("http://127.0.0.1:5000/send-email/manual", {
+      const res = await axios.post('http://127.0.0.1:5000/send-email/manual', {
         jd_id: jdId,
-        to_email: toEmail,
-        cc_list: cc.split(',').map(e => e.trim()).filter(Boolean),
-        attachments: topMatches.map(m => m.file_path),
-        subject: `Top Matches for JD ${jdId}`,
-        body: `Hello,\n\nPlease find the top matches for JD ID ${jdId}.\n\nRegards,\nRadarX`
-      })
-      alert(res.data.message)
+        to_email: userEmail,
+        cc_list: cc.split(',').map((e) => e.trim()).filter(Boolean),
+        attachments: topMatches.map((m) => m.file_path),
+        subject: `Top Matches for ${jdTitle}`,
+        body: `Hello,\n\nPlease find the top consultant matches for JD "${jdTitle}".\n\nRegards,\nRadarX AI`,
+      });
+      alert(res.data.message);
+      setEmailSent(true);
+      setShowEmailModal(false);
     } catch (err) {
-      console.error("❌ Email failed", err)
-      alert("❌ Email failed. See console.")
+      console.error('Email failed:', err);
+      alert('❌ Failed to send email.');
     }
-  }
+  };
+
+  const resetUpload = () => {
+    setJdId(null);
+    setJdFile(null);
+    setTopMatches([]);
+    setEmailSent(false);
+    setProgress({ compared: false, ranked: false, emailed: false });
+  };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#0d0d0d] text-white px-4 py-8 md:flex-row gap-8">
-      {/* Left: Vertical Progress Tracker */}
-      <div className="w-full md:w-1/4 bg-[#1a1a1a] rounded-2xl p-6 border border-gray-800 shadow-lg sticky top-20 h-fit md:h-full">
-        <h2 className="text-lg font-bold mb-6 text-accent">📊 JD Progress Tracker</h2>
-        <div className="space-y-5 text-sm">
-          <ProgressItem label="JD Compared" active={progress.compared} />
-          <ProgressItem label="Profiles Ranked" active={progress.ranked} />
-          <ProgressItem label="Top 3 Profiles Identified" active={(topMatches?.length || 0) === 3} />
-          <ProgressItem label="Email Sent" active={progress.emailed} />
+    <div className="bg-[#0a0a0a] text-white min-h-screen font-sans relative overflow-x-hidden">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-md px-6 py-4 flex justify-between items-center border-b border-white/10 shadow-md">
+        <h1 className="text-xl font-bold text-cyan-400 tracking-wide">🚀 RadarX – AR Dashboard</h1>
+        <div className="flex gap-4 items-center">
+          {['upload', 'resume', 'onetoone'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveSection(tab)}
+              className={`relative group px-5 py-2 text-sm font-semibold rounded-xl transition-all duration-200 ${
+                activeSection === tab
+                  ? 'bg-cyan-400 text-black shadow-lg'
+                  : 'bg-white/10 hover:bg-cyan-500/20 text-white'
+              }`}
+            >
+              {tab === 'upload' ? '📤 Upload JD' : tab === 'resume' ? '🔄 Resume → JD' : '🔗 One-to-One'}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
+            </button>
+          ))}
+          <button
+            onClick={onLogout}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 text-sm"
+          >
+            Logout
+          </button>
         </div>
-      </div>
+      </header>
 
-      {/* Right: JD Upload & Content */}
-      <div className="relative w-full max-w-screen-md mx-auto px-4 py-6 space-y-10">
-      {/* 🔴 Logout Button */}
-      <button
-        onClick={onLogout}
-        className="absolute top-4 right-6 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
-      >
-        Logout
-      </button>
-        {/* Section Tabs */}
-        <div className="flex flex-wrap justify-center gap-4">
-          <button onClick={() => setActiveSection('upload')} className={`px-6 py-2 rounded-full font-semibold text-sm ${activeSection === 'upload' ? 'bg-accent text-black' : 'bg-gray-700 hover:bg-gray-600'}`}>📤 Upload JD</button>
-          <button onClick={() => setActiveSection('resume')} className={`px-6 py-2 rounded-full font-semibold text-sm ${activeSection === 'resume' ? 'bg-accent text-black' : 'bg-gray-700 hover:bg-gray-600'}`}>🔄 Resume → JD</button>
-          <button onClick={() => setActiveSection('onetoone')} className={`px-6 py-2 rounded-full font-semibold text-sm ${activeSection === 'onetoone' ? 'bg-accent text-black' : 'bg-gray-700 hover:bg-gray-600'}`}>🔗 One-to-One</button>
-        </div>
+      {/* Main */}
+      <main className="max-w-screen-xl mx-auto px-6 py-10 space-y-12">
+        {activeSection === 'upload' && (
+          <>
+            {!jdId ? (
+              <div className="bg-white/5 border border-white/20 p-10 rounded-2xl shadow-xl max-w-2xl mx-auto text-center backdrop-blur-lg">
+                <h2 className="text-2xl font-bold text-cyan-300 mb-3">Upload Job Description</h2>
+                <label className="block bg-gray-800 hover:bg-gray-700 border border-cyan-800 text-white font-medium px-6 py-4 rounded-xl cursor-pointer transition-all duration-200">
+                  📎 Choose JD File
+                  <input type="file" className="hidden" onChange={handleFileChange} />
+                </label>
+                {jdFile && <p className="text-sm text-green-400 mt-2">✅ {jdFile.name}</p>}
+                <button
+                  onClick={uploadJD}
+                  disabled={!jdFile || loading}
+                  className="mt-4 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-black px-6 py-3 rounded-lg font-bold shadow-lg transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  {loading ? 'Processing...' : '🔍 Start AI Matching'}
+                </button>
+              </div>
+            ) : (
+              <>
+                <LiveTracker
+                  jdId={jdId}
+                  progress={progress}
+                  topMatches={topMatches}
+                  emailSent={emailSent}
+                />
 
-        <AnimatePresence mode="wait">
-          {activeSection === 'upload' && (
-            <motion.section
-              key="upload"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#151515] border border-gray-700 rounded-2xl p-8 shadow-lg space-y-6"
-            >
-              <h3 className="text-xl font-bold text-accent">Upload JD & Start Matching</h3>
-              <label className="block bg-gray-800 border border-gray-600 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-700 transition">
-                📎 Choose JD File
-                <input type="file" className="hidden" onChange={handleFileChange} />
-              </label>
-              {jdFile && <p className="text-sm text-green-400">✅ {jdFile.name}</p>}
+                {!emailSent && (
+  <div className="flex justify-center gap-4 mt-8">
+    <button
+      onClick={resetUpload}
+      className="bg-black border border-cyan-500 text-cyan-300 font-semibold px-5 py-2 rounded-xl shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
+    >
+      🔁 Upload New JD
+    </button>
 
-              <button
-                onClick={uploadJD}
-                disabled={!jdFile || loading}
-                className="bg-accent text-black font-semibold py-2 px-6 rounded-lg hover:bg-cyan-400 transition disabled:opacity-40"
-              >
-                {loading ? 'Processing...' : '🔍 Upload & Match'}
-              </button>
+    <button
+      onClick={() => setShowEmailModal(true)}
+      className="bg-black border border-green-400 text-green-300 font-semibold px-5 py-2 rounded-xl shadow-lg hover:shadow-green-500/50 transition-all duration-300"
+    >
+      📩 Send Email
+    </button>
+  </div>
+)}
 
-              {status && <p className="text-sm text-accent">{status}</p>}
 
-              {topMatches.length > 0 && (
-                <div className="mt-6 space-y-4">
-                  <h3 className="text-lg font-semibold text-accent">Top 3 Consultant Matches</h3>
-                  <ul className="space-y-4">
-                    {topMatches.map((match, i) => (
-                      <li key={i} className="bg-[#222] p-4 rounded-xl shadow-md border border-gray-600">
-                        <div className="font-bold text-white mb-1">
-                          {i + 1}. {match.name} ({match.emp_id}) – {match.vertical}
-                        </div>
-                        <div className="text-gray-300">Score: <span className="text-accent font-semibold">{match.score}</span> — {match.label}</div>
-                        <div className="text-gray-400 text-sm mt-1">🧠 {match.explanation?.summary || 'Detailed explanation available in report.'}</div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </motion.section>
-          )}
+                {topMatches.length > 0 && (
+                  <div className="mt-10 space-y-6">
+                    <h3 className="text-2xl font-bold text-center text-cyan-300 mb-4">Top 3 Consultant Matches</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {topMatches.map((match, i) => (
+                        <TopMatchCard key={i} match={match} />
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-          {progress.emailed && (
-            <motion.section
-              key="email"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="bg-[#1e1e1e] border border-gray-700 rounded-xl p-6 shadow space-y-4"
-            >
-              <h3 className="text-lg font-semibold text-accent">📧 Email Top Matches</h3>
-              <input
-                type="email"
-                placeholder="To (Recruiter Email)"
-                value={toEmail}
-                onChange={(e) => setToEmail(e.target.value)}
-                className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 text-sm"
-              />
-              <input
-                type="text"
-                placeholder="CC (comma-separated)"
-                value={cc}
-                onChange={(e) => setCc(e.target.value)}
-                className="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 text-sm"
-              />
-              <button
-                onClick={handleSendEmail}
-                className="bg-accent text-black py-2 px-6 rounded hover:bg-cyan-400 transition font-semibold"
-              >
-                📩 Send Email
-              </button>
-            </motion.section>
-          )}
+                
+              </>
+            )}
+          </>
+        )}
 
-          {activeSection === 'resume' && (
-            <motion.section
-              key="resume"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#151515] border border-gray-700 rounded-2xl p-8 shadow-lg"
-            >
-              <ResumeMatchSection />
-            </motion.section>
-          )}
+        {activeSection === 'resume' && (
+          <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-xl">
+            <ResumeMatchSection />
+          </div>
+        )}
 
-          {activeSection === 'onetoone' && (
-            <motion.section
-              key="onetoone"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#151515] border border-gray-700 rounded-2xl p-8 shadow-lg"
-            >
-              <OneToOneMatchSection />
-            </motion.section>
-          )}
-        </AnimatePresence>
-      </div>
+        {activeSection === 'onetoone' && (
+          <div className="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-xl">
+            <OneToOneMatchSection />
+          </div>
+        )}
+      </main>
+
+      {/* Email Modal */}
+      {showEmailModal && (
+        <EmailModal
+          toEmail={userEmail}
+          cc={cc}
+          setCc={setCc}
+          onSend={handleSendEmail}
+          onClose={() => setShowEmailModal(false)}
+        />
+      )}
     </div>
-  )
-}
-
-function ProgressItem({ label, active }) {
-  return (
-    <div className="flex items-center gap-3 text-sm">
-      <div className={`w-4 h-4 rounded-full ${active ? 'bg-accent' : 'bg-gray-600'}`} />
-      <span className={active ? 'text-white' : 'text-gray-400'}>{label}</span>
-    </div>
-  )
+  );
 }
