@@ -5,7 +5,7 @@ import ViewJDMatches from '../components/ViewJDMatches'
 import { motion, AnimatePresence } from 'framer-motion'
 import axios from 'axios'
 
-export default function RecruiterDashboard() {
+export default function RecruiterDashboard({onLogout}) {
   const [activeSection, setActiveSection] = useState('upload')
   const [profileFile, setProfileFile] = useState(null)
   const [empId, setEmpId] = useState('')
@@ -63,8 +63,17 @@ export default function RecruiterDashboard() {
     }
   }
 
+
   return (
-    <div className="w-full max-w-screen-md mx-auto px-4 py-6 space-y-10">
+    <div className="relative w-full max-w-screen-md mx-auto px-4 py-6 space-y-10">
+    {/* 🔴 Logout Button */}
+    <button
+      onClick={onLogout}
+      className="absolute top-4 right-6 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+    >
+      Logout
+    </button>
+
       {/* Navigation Tabs */}
       <div className="flex justify-center gap-4 flex-wrap mb-6">
         <button onClick={() => setActiveSection('upload')} className={`px-5 py-2 rounded-full text-sm font-semibold ${activeSection === 'upload' ? 'bg-accent text-black' : 'bg-gray-700 text-white hover:bg-gray-600'}`}>📤 Upload Profile</button>

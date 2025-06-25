@@ -4,7 +4,7 @@ import OneToOneMatchSection from '../components/OneToOneMatchSection'
 import axios from 'axios'
 import { motion, AnimatePresence } from 'framer-motion'
 
-export default function ARRequestorDashboard() {
+export default function ARRequestorDashboard({onLogout}) {
   const [activeSection, setActiveSection] = useState('upload')
   const [jdFile, setJdFile] = useState(null)
   const [jdId, setJdId] = useState(null)
@@ -80,7 +80,14 @@ export default function ARRequestorDashboard() {
       </div>
 
       {/* Right: JD Upload & Content */}
-      <div className="w-full md:w-3/4 space-y-10">
+      <div className="relative w-full max-w-screen-md mx-auto px-4 py-6 space-y-10">
+      {/* 🔴 Logout Button */}
+      <button
+        onClick={onLogout}
+        className="absolute top-4 right-6 bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+      >
+        Logout
+      </button>
         {/* Section Tabs */}
         <div className="flex flex-wrap justify-center gap-4">
           <button onClick={() => setActiveSection('upload')} className={`px-6 py-2 rounded-full font-semibold text-sm ${activeSection === 'upload' ? 'bg-accent text-black' : 'bg-gray-700 hover:bg-gray-600'}`}>📤 Upload JD</button>

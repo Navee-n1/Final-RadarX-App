@@ -27,7 +27,7 @@ export default function ResumeMatchSection() {
     setLoading(true)
     const res = await axios.post('http://127.0.0.1:5000/match/resume-to-jds', {
       resume_id: resumeId
-    })
+    },{withCredentials: true})
     setMatches(res.data.top_matches)
     setLoading(false)
   }
