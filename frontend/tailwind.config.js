@@ -6,15 +6,17 @@ module.exports = {
       colors: {
         accent: '#22d3ee',
       },
-      fontFamily: {
-        sans: ['Helvetica Neue', 'Inter', 'Segoe UI', 'sans-serif'],
-      },
+      
       backgroundImage: {
         glass: 'linear-gradient(to right, rgba(255,255,255,0.03), rgba(255,255,255,0.02))',
       },
       dropShadow: {
         glow: '0 0 8px rgba(255,255,255,0.4), 0 0 15px rgba(255,255,255,0.1)',
       },
+      fontFamily: {
+  sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+},
+
       animation: {
         slide: 'slide 2s ease-in-out infinite',
         glow: 'glow 2.5s ease-in-out infinite alternate',

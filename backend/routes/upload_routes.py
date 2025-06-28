@@ -27,6 +27,7 @@ def upload_jd():
     file = request.files.get('file')
     uploaded_by = request.form.get('uploaded_by', 'anonymous')
     project_code = request.form.get('project_code', 'GENERIC')
+    job_title = request.form.get('job_title')  # ✅ Accept job title from frontend
 
     if not file:
         return jsonify({"error": "No JD file provided"}), 400
@@ -35,11 +36,16 @@ def upload_jd():
     save_path = os.path.join(UPLOAD_FOLDER_JD, filename)
     file.save(save_path)
 
-    jd = JD(file_path=save_path, uploaded_by=uploaded_by, project_code=project_code)
+    jd = JD(
+        file_path=save_path,
+        uploaded_by=uploaded_by,
+        project_code=project_code,
+        job_title=job_title  # ✅ Store it in DB
+    )
     db.session.add(jd)
     db.session.commit()
 
-    return jsonify({"message": "JD uploaded", "jd_id": jd.id})
+    return jsonify({"message": "JD uploaded", "jd_id": jd.id, "job_title": jd.job_title})
 
 
 # ────────────────────────────────

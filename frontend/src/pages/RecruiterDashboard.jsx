@@ -1,202 +1,211 @@
-// File: RecruiterDashboard.jsx
-
-import React, { useState } from 'react';
-import ResumeMatchSection from '../components/ResumeMatchSection';
-import OneToOneMatchSection from '../components/OneToOneMatchSection';
-import ViewJDMatches from '../components/ViewJDMatches';
-import AnimatedHeader from '../components/AnimatedHeader';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ResumeToJDPage from './ResumeToJDPage';
+import OneToOneMatchPage from './OneToOneMatchPage';
+import ViewJDMatches from '../components/ViewJDMatches';
+import { motion, AnimatePresence } from 'framer-motion';
+import SearchResultsCard from '../components/SearchResultsCard';
+import { useNavigate } from 'react-router-dom';
 
-export default function RecruiterDashboard({ onLogout }) {
-const [activeSection, setActiveSection] = useState('upload');
-const [profileFile, setProfileFile] = useState(null);
-const [empId, setEmpId] = useState('');
-const [name, setName] = useState('');
-const [vertical, setVertical] = useState('');
-const [status, setStatus] = useState('');
-const [searchName, setSearchName] = useState('');
-const [searchEmpId, setSearchEmpId] = useState('');
-const [searchVertical, setSearchVertical] = useState('');
-const [searchSkills, setSearchSkills] = useState('');
-const [minExp, setMinExp] = useState('');
-const [maxExp, setMaxExp] = useState('');
-const [searchResults, setSearchResults] = useState([]);
+const verticalOptions = ['Banking', 'Healthcare', 'Insurance', 'GTT', 'HTPS', 'GEN-AI', 'Cloud', 'Hexavarsity', 'Others'];
 
-const handleResumeUpload = (e) => setProfileFile(e.target.files[0]);
+export default function RecruiterDashboard() {
+  const [activeSection, setActiveSection] = useState('upload');
+  const [profileFile, setProfileFile] = useState(null);
+  const [empId, setEmpId] = useState('');
+  const [name, setName] = useState('');
+  const [vertical, setVertical] = useState('');
+  const [experience, setExperience] = useState('');
+  const [status, setStatus] = useState('');
+  const [searchName, setSearchName] = useState('');
+  const [searchEmpId, setSearchEmpId] = useState('');
+  const [searchVertical, setSearchVertical] = useState('');
+  const [searchSkills, setSearchSkills] = useState('');
+  const [minExp, setMinExp] = useState('');
+  const [maxExp, setMaxExp] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [viewMode, setViewMode] = useState('grid');
+  const [summary, setSummary] = useState({ profiles: 0, jds: 0, matches: 0 });
 
-const uploadProfile = async () => {
-if (!empId || !name || !profileFile) {
-alert("Please fill EmpID, Name and select Resume.");
-return;
-}
-const formData = new FormData();
-formData.append('file', profileFile);
-formData.append('emp_id', empId);
-formData.append('name', name);
-formData.append('vertical', vertical);
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) navigate('/');
 
-try {
-  const res = await axios.post('http://127.0.0.1:5000/upload-profile', formData);
-  setStatus('✅ Profile uploaded successfully');
-} catch (err) {
-  console.error(err);
-  setStatus('❌ Upload failed');
-}
-};
+    axios.interceptors.request.use((config) => {
+      const token = localStorage.getItem('token');
+      if (token) config.headers.Authorization = `Bearer ${token}`;
+      return config;
+    });
 
-const handleSearch = async () => {
-try {
-const res = await axios.get('http://127.0.0.1:5000/profiles/search', {
-params: {
-name: searchName,
-emp_id: searchEmpId,
-vertical: searchVertical,
-skills: searchSkills,
-min_exp: minExp,
-max_exp: maxExp
-}
-});
-setSearchResults(res.data);
-} catch (err) {
-console.error("Search failed", err);
-alert("❌ Failed to fetch profiles.");
-}
-};
+    axios.get('http://127.0.0.1:5000/recruiter/summary')
+      .then((res) => setSummary(res.data))
+      .catch(() => {});
+  }, [navigate]);
 
-return (
-<div className="bg-[#0a0a0a] text-white min-h-screen font-sans">
-<AnimatedHeader title="RadarX – Recruiter Dashboard" onLogout={onLogout} />
+  const handleResumeUpload = (e) => setProfileFile(e.target.files[0]);
 
-  <main className="max-w-screen-xl mx-auto px-6 py-10 space-y-10">
-    {/* Navbar-like Section Switch */}
-    <div className="flex justify-center flex-wrap gap-4 mb-6">
-      {[
-        ['upload', '📤 Upload Profile'],
-        ['resume', '🔄 Resume → JD'],
-        ['onetoone', '🔗 One-to-One'],
-        ['jds', '📂 View JDs'],
-        ['search', '🔍 Search Profiles'],
-      ].map(([key, label]) => (
-        <button
-          key={key}
-          onClick={() => setActiveSection(key)}
-          className={`px-5 py-2 rounded-full text-sm font-semibold transition ${
-            activeSection === key
-              ? 'bg-cyan-400 text-black shadow-md'
-              : 'bg-white/10 text-white hover:bg-cyan-500/20'
+  const uploadProfile = async () => {
+    if (!empId || !name || !profileFile || !vertical) return alert("Please fill all required fields.");
+    const formData = new FormData();
+    formData.append('file', profileFile);
+    formData.append('emp_id', empId);
+    formData.append('name', name);
+    formData.append('vertical', vertical);
+    formData.append('experience_years', experience);
+    try {
+      await axios.post('http://127.0.0.1:5000/upload-profile', formData);
+      setStatus('✅ Profile uploaded successfully');
+    } catch {
+      setStatus('❌ Upload failed');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
+  const handleSearch = async () => {
+    try {
+      const res = await axios.get('http://127.0.0.1:5000/profiles/search', {
+        params: {
+          name: searchName,
+          emp_id: searchEmpId,
+          vertical: searchVertical,
+          skills: searchSkills,
+          min_exp: minExp,
+          max_exp: maxExp
+        },
+      });
+      setSearchResults(res.data);
+    } catch {
+      alert('❌ Failed to fetch profiles.');
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col justify-between bg-[#f9f9f9] text-gray-900 font-sans">
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm px-6 py-4 font-sans flex justify-between items-center">
+  {/* Logo */}
+   <h1 className="text-3xl font-bold tracking-tight text-gray-800">
+   <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-black to-gray-700">
+    Radar
+  </span>
+  <span className="bg-gradient-to-r from-red-600 to-red-700 text-white shadow rounded">X</span>
+  <span className="text-sm text-grey-300 font-medium ml-2">| Recruiter</span>
+  </h1>
+
+  {/* Navigation Buttons with Underline Animation */}
+  <nav className="flex gap-6 items-center">
+    {[
+      { key: 'upload', label: 'Upload Profile' },
+      { key: 'resume', label: 'Resume → JD' },
+      { key: 'onetoone', label: 'One-to-One' },
+      { key: 'jds', label: 'View JDs' },
+      { key: 'search', label: 'Search Profiles' }
+    ].map((item) => (
+      <button
+        key={item.key}
+        onClick={() => setActiveSection(item.key)}
+        className={`relative group inline-block text-sm font-semibold px-2 py-1 transition-all duration-200 ${
+          activeSection === item.key
+            ? 'text-purple-700'
+            : 'text-gray-600 hover:text-purple-700'
+        }`}
+      >
+        {item.label}
+        <span
+          className={`absolute left-1/2 bottom-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 ${
+            activeSection === item.key
+              ? 'w-full left-0'
+              : 'group-hover:w-full group-hover:-translate-x-1/2'
           }`}
-        >
-          {label}
-        </button>
-      ))}
-    </div>
+        />
+      </button>
+    ))}
 
-    <AnimatePresence mode="wait">
-      {activeSection === 'upload' && (
-        <motion.section
-          key="upload"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="bg-white/5 border border-white/20 p-8 rounded-2xl shadow-xl space-y-6"
-        >
-          <h2 className="text-xl font-bold text-cyan-300">Upload Consultant Profile</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <input value={empId} onChange={e => setEmpId(e.target.value)} placeholder="Employee ID" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" />
-            <input value={name} onChange={e => setName(e.target.value)} placeholder="Full Name" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" />
-            <input value={vertical} onChange={e => setVertical(e.target.value)} placeholder="Vertical (Optional)" className="bg-gray-800 px-4 py-2 rounded border border-gray-600 col-span-2" />
+    <button
+      onClick={handleLogout}
+      className="text-sm px-4 py-2 border border-gray-300 text-gray-800 rounded-lg hover:bg-red-100 transition"
+    >
+      Logout
+    </button>
+  </nav>
+</header>
+
+
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 p-6">
+        {[['Profiles', summary.profiles, 'text-purple-600'], ['JDs', summary.jds, 'text-blue-600'], ['Matches', summary.matches, 'text-green-600'], ['Active Users', 23, 'text-rose-500']].map(([label, value, color], idx) => (
+          <div key={idx} className="p-6 rounded-2xl bg-white bg-opacity-70 shadow-lg backdrop-blur border border-gray-200">
+            <p className="text-sm text-gray-500">{label}</p>
+            <h3 className={`text-4xl font-extrabold ${color}`}>{value}</h3>
           </div>
-          <div className="w-full">
-            <label className="bg-gray-800 border border-gray-600 px-4 py-3 text-center rounded cursor-pointer block hover:bg-gray-700">
-              📎 Choose Resume File
-              <input type="file" onChange={handleResumeUpload} className="hidden" />
-            </label>
-            {profileFile && <p className="text-sm text-green-400 mt-2">✅ {profileFile.name}</p>}
-          </div>
-          <button onClick={uploadProfile} className="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 rounded font-bold shadow-lg hover:from-cyan-300 hover:to-blue-400 transition">
-            🚀 Upload Profile
-          </button>
-          {status && <p className="text-sm text-accent mt-1">{status}</p>}
-        </motion.section>
-      )}
+        ))}
+      </section>
 
-      {activeSection === 'resume' && (
-        <motion.section
-          key="resume"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="bg-white/5 border border-white/20 p-8 rounded-2xl shadow-xl"
-        >
-          <ResumeMatchSection />
-        </motion.section>
-      )}
-
-      {activeSection === 'onetoone' && (
-        <motion.section
-          key="onetoone"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="bg-white/5 border border-white/20 p-8 rounded-2xl shadow-xl"
-        >
-          <OneToOneMatchSection />
-        </motion.section>
-      )}
-
-      {activeSection === 'jds' && (
-        <motion.section
-          key="jds"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="bg-white/5 border border-white/20 p-8 rounded-2xl shadow-xl"
-        >
-          <ViewJDMatches />
-        </motion.section>
-      )}
-
-      {activeSection === 'search' && (
-        <motion.section
-          key="search"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="bg-white/5 border border-white/20 p-8 rounded-2xl shadow-xl space-y-6"
-        >
-          <h2 className="text-xl font-bold text-cyan-300">🔍 Search Consultant Profiles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input placeholder="Name" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" onChange={e => setSearchName(e.target.value)} />
-            <input placeholder="EmpID" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" onChange={e => setSearchEmpId(e.target.value)} />
-            <input placeholder="Vertical" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" onChange={e => setSearchVertical(e.target.value)} />
-            <input placeholder="Skills (comma-separated)" className="bg-gray-800 px-4 py-2 rounded border border-gray-600 col-span-2" onChange={e => setSearchSkills(e.target.value)} />
-            <input placeholder="Min Exp" type="number" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" onChange={e => setMinExp(e.target.value)} />
-            <input placeholder="Max Exp" type="number" className="bg-gray-800 px-4 py-2 rounded border border-gray-600" onChange={e => setMaxExp(e.target.value)} />
-          </div>
-          <button onClick={handleSearch} className="bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-6 py-2 rounded font-bold shadow-lg hover:from-cyan-300 hover:to-blue-400 transition">
-            🔍 Run Search
-          </button>
-
-          {searchResults.length > 0 && (
-            <div className="mt-6 space-y-4">
-              <h3 className="text-lg font-semibold text-cyan-300">Matching Profiles</h3>
-              <ul className="space-y-4">
-                {searchResults.map((p, i) => (
-                  <li key={i} className="bg-[#1a1a1a] p-4 rounded-xl border border-gray-600">
-                    <p className="font-bold text-white mb-1">{p.name} ({p.emp_id}) – {p.vertical}</p>
-                    <p className="text-gray-300">Experience: {p.experience_years} yrs</p>
-                    <p className="text-gray-400 text-sm">Skills: {p.skills}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <main className="max-w-screen-xl mx-auto px-6 pb-16">
+        <AnimatePresence mode="wait">
+          {activeSection === 'upload' && (
+            <motion.div key="upload" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <h2 className="text-xl font-semibold text-center tracking-wide mb-4">Upload Consultant Profile</h2>
+              <div className="grid md:grid-cols-4 gap-4">
+                <input placeholder="Employee ID" value={empId} onChange={(e) => setEmpId(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm" />
+                <input placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm" />
+                <select value={vertical} onChange={(e) => setVertical(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm">
+                  <option value="">Select Vertical</option>
+                  {verticalOptions.map(v => <option key={v} value={v}>{v}</option>)}
+                </select>
+                <input placeholder="Experience (Years)" type="number" value={experience} onChange={(e) => setExperience(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm" />
+              </div>
+              <div className="mt-4">
+                <label className="block bg-purple-100 hover:bg-purple-200 text-purple-700 font-medium px-6 py-3 rounded-lg cursor-pointer transition">
+                  📎 Choose Resume File
+                  <input type="file" onChange={handleResumeUpload} className="hidden" />
+                </label>
+              </div>
+              {profileFile && <p className="text-sm text-green-600 mt-2">✅ {profileFile.name}</p>}
+              <button onClick={uploadProfile} className="mt-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-xl shadow hover:scale-105 transition">Upload Profile</button>
+              {status && <p className="text-sm mt-2 text-gray-700">{status}</p>}
+            </motion.div>
           )}
-        </motion.section>
-      )}
-    </AnimatePresence>
-  </main>
-</div>
-);
+
+          {activeSection === 'resume' && <motion.div key="resume" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><ResumeToJDPage /></motion.div>}
+          {activeSection === 'onetoone' && <motion.div key="onetoone" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><OneToOneMatchPage /></motion.div>}
+          {activeSection === 'jds' && <motion.div key="jds" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><ViewJDMatches /></motion.div>}
+
+          {activeSection === 'search' && (
+            <motion.div key="search" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
+              <h2 className="text-xl font-semibold text-center tracking-wide">Search Consultant Profiles</h2>
+              <div className="grid md:grid-cols-4 gap-4">
+                <input placeholder="Name or Emp ID" onChange={(e) => { setSearchName(e.target.value); setSearchEmpId(e.target.value); }} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm" />
+                <input placeholder="Skills" onChange={(e) => setSearchSkills(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm" />
+                <select onChange={(e) => setSearchVertical(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl shadow-sm">
+                  <option value="">Select Vertical</option>
+                  {verticalOptions.map(v => <option key={v} value={v}>{v}</option>)}
+                </select>
+                <div className="flex gap-2">
+                  <input placeholder="Min Exp" type="number" onChange={(e) => setMinExp(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl w-1/2" />
+                  <input placeholder="Max Exp" type="number" onChange={(e) => setMaxExp(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl w-1/2" />
+                </div>
+              </div>
+              <div className="flex items-center justify-between mt-4">
+                <button onClick={handleSearch} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-xl shadow hover:scale-105 transition">🔍 Run Search</button>
+                <button onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')} className="text-sm text-purple-700 hover:underline">Switch to {viewMode === 'grid' ? 'List' : 'Grid'} View</button>
+              </div>
+             {searchResults.length > 0 && (
+  <SearchResultsCard results={searchResults} viewMode={viewMode} />
+)}
+
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
+
+      <footer className="border-t border-gray-200 bg-white text-center py-3 text-sm text-gray-500">
+        © 2024 RadarX. All rights reserved.
+      </footer>
+    </div>
+  );
 }

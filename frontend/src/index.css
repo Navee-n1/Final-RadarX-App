@@ -7,12 +7,13 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#0b0b0b] text-white font-sans tracking-wide;
+  @apply bg-[#0b0b0b] text-black font-sans tracking-wide;
 }
 
 .bg-glass {
   background-color: rgb(17, 17, 17);
   backdrop-filter: blur(8px);
+  color: black
 }
 
 button {

@@ -1,52 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import RecruiterDashboard from './pages/RecruiterDashboard'
-import ARRequestorDashboard from './pages/ARRequestorDashboard'
+// File: src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-import './App.css'
-import './index.css'
+import ProtectedRoute from './components/ProtectedRoute';
+import ARDashboardLayout from './layouts/ARDashboardLayout';
+import ARRequestorDashboard from './pages/ARRequestorDashboard';
+import UploadJDPage from './pages/uploadJDPage';
+import ResumeToJDPage from './pages/ResumeToJDPage';
+import OneToOneMatchPage from './pages/OneToOneMatchPage';
+import RecruiterDashboard from './pages/RecruiterDashboard';
 
-function App() {
-  const [role, setRole] = useState(null);
-
-  useEffect(() => {
-    const storedRole = localStorage.getItem('role');
-    if (storedRole === 'recruiter' || storedRole === 'ar') {
-      setRole(storedRole);
-    } else {
-      localStorage.removeItem('role');  // clean bad value
-      setRole(null);  // force login
-    }
-  }, []);
- 
-  const handleLogin = (userRole) => {
-    setRole(userRole); // ✅ This triggers rerender to dashboard
-  };
-
+const App = () => {
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('email');
-    setRole(null); // 👈 This brings the user back to LoginPage
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    window.location.href = "/";
   };
- 
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white font-sans">
-      
-      {/* 👇 Routing based on login */}
-      {!role ? (
-      <LoginPage onLogin={handleLogin} />
-      ) : role === 'Recruiter' ? (
-      <RecruiterDashboard onLogout={handleLogout} />
-      ) : role === 'AR Requisitor' ? (
-      <ARRequestorDashboard onLogout={handleLogout} />
-      ) : (
-      <p className="text-center mt-10">❌ Unknown role</p>
-      )}
- 
-      
-    </div>
-  );
-}
 
-export default App
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+
+        <Route
+          path="/recruiter-dashboard"
+          element={
+            <ProtectedRoute requiredRole="recruiter">
+              <RecruiterDashboard onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ar-dashboard"
+          element={
+            <ProtectedRoute requiredRole="ar">
+              <ARRequestorDashboard onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/upload-jd"
+          element={
+            <ProtectedRoute requiredRole="ar">
+              
+                <UploadJDPage />
+              
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/resume-to-jd"
+          element={
+            <ProtectedRoute requiredRole="ar">
+              <ARDashboardLayout>
+                <ResumeToJDPage />
+              </ARDashboardLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/one-to-one-match"
+          element={
+            <ProtectedRoute requiredRole="ar">
+              <ARDashboardLayout>
+                <OneToOneMatchPage />
+              </ARDashboardLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Redirect unknown routes */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+   
+  );
+};
+
+export default App;

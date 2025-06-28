@@ -10,7 +10,7 @@ class User(db.Model):
     email = db.Column(db.String, unique=True, nullable=False)
     role = db.Column(db.String, nullable=False)  # 'recruiter' or 'ar'
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    password=db.Column(db.String,nullable=False)
+    password = db.Column(db.String, nullable=False)
 
 # ─────────────── JOB DESCRIPTIONS ────────────────
 class JD(db.Model):
@@ -19,6 +19,7 @@ class JD(db.Model):
     file_path = db.Column(db.String, nullable=False)
     uploaded_by = db.Column(db.String)
     project_code = db.Column(db.String)
+    job_title = db.Column(db.String)  # ✅ Added for dashboard display/search
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 # ─────────────── LEGACY RESUME (optional) ────────────────
@@ -50,6 +51,7 @@ class MatchResult(db.Model):
     resume_id = db.Column(db.Integer, db.ForeignKey('resume.id'), nullable=True)  # legacy support
     score = db.Column(db.Float)
     explanation = db.Column(db.Text)
+    match_type = db.Column(db.String)  # ✅ Added to track 'jd-to-resume', 'resume-to-jd', etc.
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 # ─────────────── EMAIL LOG ────────────────

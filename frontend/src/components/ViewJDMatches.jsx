@@ -71,7 +71,7 @@ export default function ViewJDMatches() {
                 selectedJD === jd.id ? 'bg-accent text-black font-semibold' : 'text-white'
               }`}
             >
-              JD #{jd.id} — {jd.project_code} ({jd.uploaded_by})
+              JD #{jd.id} — {jd.job_title} ({jd.uploaded_by})
             </button>
           ))
         )}

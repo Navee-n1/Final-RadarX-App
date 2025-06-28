@@ -11,6 +11,9 @@ from routes.match_routes import match_bp
 from routes.email_routes import email_bp 
 from routes.profile_routes import profile_bp
 from routes.auth_routes import auth_bp
+from routes.recruiter_routes import recruiter_bp
+
+
 
 
 load_dotenv()
@@ -34,6 +37,7 @@ app.register_blueprint(match_bp)
 app.register_blueprint(email_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(auth_bp)
+app.register_blueprint(recruiter_bp)
 
 
 
