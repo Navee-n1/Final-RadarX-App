@@ -7,7 +7,8 @@ import { Input } from "../components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Label } from "../components/ui/label";
 import { Switch } from "../components/ui/switch";
-import { Eye, EyeOff, Radar, Users, Search, Mail, Lock, ArrowRight } from "lucide-react";
+import { Eye, EyeOff, Radar, Users, Search, Mail, Lock, ArrowRight, Radiation, LucideRadiation, RadicalIcon, RadioReceiver, Radius, Rotate3D, RectangleVerticalIcon, RadiusIcon } from "lucide-react";
+import { RadialBarChart } from "recharts";
 
 const LoginPage = ({ onLogin }) => {
   const [isRecruiter, setIsRecruiter] = useState(false);
@@ -73,7 +74,7 @@ const LoginPage = ({ onLogin }) => {
       <Card className="w-full max-w-md glass-effect border-white/20 shadow-2xl backdrop-blur-xl bg-white/10 relative z-10">
         <CardHeader className="text-center space-y-6 pb-8">
           <div className="flex items-center justify-center space-x-1 mb-4">
-            <Radar className="w-8 h-8 text-white" />
+            <RadiusIcon className="w-8 h-8 text-white" />
             <h1 className="text-4xl font-bold">
               <span className="text-white">Radar</span>
               <span className="text-red-500">X</span>
@@ -134,7 +135,7 @@ const LoginPage = ({ onLogin }) => {
           </Button>
 
           <div className="relative pt-6 text-center text-sm text-gray-400">
-            © 2024 RadarX. Powered by intelligent talent matching.
+            © 2025 RadarX.Super Powered by House of Starks.
           </div>
         </CardContent>
       </Card>

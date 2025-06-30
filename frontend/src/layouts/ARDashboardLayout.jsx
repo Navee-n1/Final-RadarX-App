@@ -17,23 +17,22 @@ const ARDashboardLayout = ({ children }) => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f9f9f9] text-gray-900 font-sans">
+     <div className="min-h-screen flex flex-col justify-between bg-gradient-to-b from-white via-gray-50 to-purple-50 text-gray-900 font-sans">
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm px-6 py-4 font-sans flex justify-between items-center">
        <h1 className="text-3xl font-bold tracking-tight text-gray-800">
-   <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-black to-gray-700">
-    Radar
-  </span>
-  <span className="bg-gradient-to-r from-red-600 to-red-700 text-white shadow rounded">X</span>
-  <span className="text-sm text-grey-300 font-medium ml-2">| AR Requestor</span>
+    <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-700 via-pink to-pink-500">Radar</span>
+          <span className="bg-gradient-to-r from-pink-100 to-pink-600 text-white shadow px-1 ">X</span>
+          <span className="text-sm text-grey-200 font-medium ml-2">| AR Requestor</span>
 </h1>
 
-      <nav className="flex gap-6 items-center">
+     <nav className="flex gap-6 items-center">
   {navItems.map((item) => (
     <Link
       key={item.path}
       to={item.path}
-      className={`relative group inline-block text-sm font-semibold px-2 py-1 transition-all duration-200 ${
+      className={`relative group text-sm font-semibold px-2 py-1 transition-all duration-200 ${
         location.pathname === item.path
           ? 'text-purple-700'
           : 'text-gray-600 hover:text-purple-700'
@@ -43,11 +42,11 @@ const ARDashboardLayout = ({ children }) => {
 
       {/* Underline Animation */}
       <span
-        className={`absolute left-1/2 bottom-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 
-        ${location.pathname === item.path
-          ? 'w-full left-0'
-          : 'group-hover:w-full group-hover:-translate-x-1/2'
-        }`}
+        className={`absolute left-0 bottom-0 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300
+          ${location.pathname === item.path
+            ? 'w-full'
+            : 'w-0 group-hover:w-full'}
+        `}
       />
     </Link>
   ))}
@@ -69,7 +68,7 @@ const ARDashboardLayout = ({ children }) => {
 
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white text-center py-3 text-sm text-gray-500">
-        © 2024 RadarX. All rights reserved by House of Starks.
+        © 2025 RadarX. All rights reserved by House of Starks.
       </footer>
     </div>
   );

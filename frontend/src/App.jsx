@@ -7,7 +7,6 @@ import ARDashboardLayout from './layouts/ARDashboardLayout';
 import ARRequestorDashboard from './pages/ARRequestorDashboard';
 import UploadJDPage from './pages/uploadJDPage';
 import ResumeToJDPage from './pages/ResumeToJDPage';
-import OneToOneMatchPage from './pages/OneToOneMatchPage';
 import RecruiterDashboard from './pages/RecruiterDashboard';
 import OneToOneMatchSection from './components/OneToOneMatchSection';
 

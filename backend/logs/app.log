@@ -300,3 +300,22 @@
 [2025-06-29 23:52:08] DEBUG:  CC List: []
 [2025-06-29 23:52:08] DEBUG: Attachments: []
 [2025-06-29 23:52:11] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-06-30 18:54:50] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-06-30 18:54:50] DEBUG:  CC List: []
+[2025-06-30 18:54:50] DEBUG: Attachments: ['C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf', 'C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Mahesh_Murari_Resume_1.pdf', 'C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Data_Science_Resume.docx']
+[2025-06-30 18:54:50] INFO:  Attachment added: SDE_Resume.pdf
+[2025-06-30 18:54:50] INFO:  Attachment added: Mahesh_Murari_Resume_1.pdf
+[2025-06-30 18:54:50] INFO:  Attachment added: Data_Science_Resume.docx
+[2025-06-30 18:54:56] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-06-30 21:47:29] INFO:  Preparing to send email to: maheshmurari003@gmail.com
+[2025-06-30 21:47:29] DEBUG:  CC List: []
+[2025-06-30 21:47:29] DEBUG: Attachments: []
+[2025-06-30 21:47:35] INFO: Email sent successfully to: maheshmurari003@gmail.com
+[2025-07-01 01:20:40] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-01 01:20:40] DEBUG:  CC List: []
+[2025-07-01 01:20:40] DEBUG: Attachments: []
+[2025-07-01 01:20:44] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-01 01:23:05] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-01 01:23:05] DEBUG:  CC List: []
+[2025-07-01 01:23:05] DEBUG: Attachments: []
+[2025-07-01 01:23:08] INFO: Email sent successfully to: maheshmurari001@gmail.com

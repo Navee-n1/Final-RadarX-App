@@ -64,6 +64,8 @@ class EmailLog(db.Model):
     status = db.Column(db.String)
     sent_at = db.Column(db.DateTime, default=datetime.utcnow)
     pdf_path = db.Column(db.String)
+    success = db.Column(db.Boolean, default=True)  # Required for agent_console logic
+
 
 # ─────────────── FEEDBACK ────────────────
 class Feedback(db.Model):
