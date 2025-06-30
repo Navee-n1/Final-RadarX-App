@@ -25,7 +25,10 @@ export default function MatchCard({ match }) {
       <div className="flex items-center gap-4">
         <FaUserTie className="text-accent text-3xl" />
         <div>
-          <h3 className="font-bold text-lg">{match.file}</h3>
+          
+          <h3 className="font-bold text-lg text-gray-100">
+  JD #{match.jd_id} — {match.job_title || match.file}
+</h3>
           <p className="text-sm text-gray-400">Match Score: <span className="text-white">{match.score}</span></p>
           <p className="text-sm">{match.label}</p>
         </div>
@@ -43,13 +46,13 @@ export default function MatchCard({ match }) {
             className={`text-xl ${voted === 'up' ? 'text-green-400' : 'text-gray-400'}`}
             onClick={() => handleFeedback('up')}
           >
-            <FaThumbsUp />
+           
           </button>
           <button
             className={`text-xl ${voted === 'down' ? 'text-red-400' : 'text-gray-400'}`}
             onClick={() => handleFeedback('down')}
           >
-            <FaThumbsDown />
+         
           </button>
         </div>
       </div>

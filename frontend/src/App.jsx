@@ -9,6 +9,7 @@ import UploadJDPage from './pages/uploadJDPage';
 import ResumeToJDPage from './pages/ResumeToJDPage';
 import OneToOneMatchPage from './pages/OneToOneMatchPage';
 import RecruiterDashboard from './pages/RecruiterDashboard';
+import OneToOneMatchSection from './components/OneToOneMatchSection';
 
 const App = () => {
   const handleLogout = () => {
@@ -68,12 +69,13 @@ const App = () => {
           element={
             <ProtectedRoute requiredRole="ar">
               <ARDashboardLayout>
-                <OneToOneMatchPage />
+                <OneToOneMatchSection />
               </ARDashboardLayout>
             </ProtectedRoute>
           }
         />
 
+        
         {/* Redirect unknown routes */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

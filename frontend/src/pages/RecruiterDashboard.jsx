@@ -168,6 +168,7 @@ export default function RecruiterDashboard() {
               {profileFile && <p className="text-sm text-green-600 mt-2">✅ {profileFile.name}</p>}
               <button onClick={uploadProfile} className="mt-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-xl shadow hover:scale-105 transition">Upload Profile</button>
               {status && <p className="text-sm mt-2 text-gray-700">{status}</p>}
+              
             </motion.div>
           )}
 

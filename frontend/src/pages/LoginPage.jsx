@@ -19,17 +19,26 @@ const LoginPage = ({ onLogin }) => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:5000/login", { email, password });
+  const res = await axios.post("http://127.0.0.1:5000/login", { email, password });
       const token = res.data.access_token;
       const decoded = jwtDecode(token);
-      const userRole = decoded.sub.role.toLowerCase();
-
+      const userRole = decoded.sub.role.toLowerCase(); // from token
+      const selectedRole = isRecruiter ? "recruiter" : "ar";
+   
+      // ✅ Check if selected role matches DB role
+      if (userRole !== selectedRole) {
+        setError(`❌ Please log in as a ${userRole.toUpperCase()} from the correct portal.`);
+        return;
+      }
+   
+      // ✅ Save details
       localStorage.setItem("token", token);
       localStorage.setItem("role", userRole);
-      localStorage.setItem("email", decoded.sub.email);
-      if (onLogin) onLogin(userRole);
-
+  localStorage.setItem("email", decoded.sub.email);
+   
+      // ✅ Redirect
       navigate(userRole === "recruiter" ? "/recruiter-dashboard" : "/ar-dashboard");
+   
     } catch (err) {
       setError("Invalid credentials. Please try again.");
     }
