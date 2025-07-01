@@ -319,3 +319,7 @@
 [2025-07-01 01:23:05] DEBUG:  CC List: []
 [2025-07-01 01:23:05] DEBUG: Attachments: []
 [2025-07-01 01:23:08] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-01 09:55:39] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-01 09:55:39] DEBUG:  CC List: []
+[2025-07-01 09:55:39] DEBUG: Attachments: []
+[2025-07-01 09:55:42] INFO: Email sent successfully to: maheshmurari001@gmail.com

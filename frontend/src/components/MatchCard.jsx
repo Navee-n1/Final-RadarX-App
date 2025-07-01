@@ -58,24 +58,31 @@ export default function MatchCard({ match }) {
       </div>
 
       {showExplain && match.explanation && (
-        <div className="mt-4 bg-[#222] p-4 rounded-lg text-sm text-gray-300">
-          <p><strong>Skills Matched:</strong> {match.explanation.skills_matched.join(', ')}</p>
-          <p><strong>Missing Skills:</strong> {match.explanation.skills_missing.join(', ')}</p>
-          <p><strong>JD Role:</strong> {match.explanation.jd_role}</p>
-          <p><strong>Resume Role:</strong> {match.explanation.resume_role}</p>
-          <p><strong>Experience:</strong> {match.explanation.resume_experience_found || '-'} (required: {match.explanation.jd_experience_required})</p>
-          {match.explanation.highlights_found.length > 0 && (
-            <>
-              <p><strong>Highlights:</strong></p>
-              <ul className="list-disc ml-5">
-                {match.explanation.highlights_found.map((h, i) => (
-                  <li key={i}>{h}</li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
+  <div className="mt-4 bg-[#222] p-4 rounded-lg text-sm text-gray-300 space-y-2">
+    {match.explanation.summary && (
+      <p><strong>Summary:</strong> {match.explanation.summary}</p>
+    )}
+
+    {match.explanation.skills_matched?.length > 0 && (
+      <p><strong>Skills Matched:</strong> {match.explanation.skills_matched.join(', ')}</p>
+    )}
+
+    {match.explanation.skills_missing?.length > 0 && (
+      <p><strong>Missing Skills:</strong> {match.explanation.skills_missing.join(', ')}</p>
+    )}
+
+    {match.explanation.resume_highlights?.length > 0 && (
+      <>
+        <p><strong>Resume Highlights:</strong></p>
+        <ul className="list-disc ml-5">
+          {match.explanation.resume_highlights.map((highlight, i) => (
+            <li key={i}>{highlight}</li>
+          ))}
+        </ul>
+      </>
+    )}
+  </div>
+)}
     </div>
   )
 }

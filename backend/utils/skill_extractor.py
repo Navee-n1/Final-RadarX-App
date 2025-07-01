@@ -64,10 +64,15 @@ def get_label(score):
         return "Low Match"
  
 def generate_explanation(jd_text, resume_text):
-    jd_words = set(jd_text.lower().split())
-    resume_words = set(resume_text.lower().split())
-    matched = jd_words.intersection(resume_words)
-    return f"Matched keywords: {', '.join(list(matched)[:10])}"
+    jd_skills = set(extract_skills(jd_text))
+    resume_skills = set(extract_skills(resume_text))
+    matched_skills = jd_skills.intersection(resume_skills)
+
+    if not matched_skills:
+        return "No overlapping skills found."
+
+    return f"Matched skills: {', '.join(sorted(matched_skills))}"
+
 def extract_experience(text):
     """
     Extracts number of years of experience from the JD text.
