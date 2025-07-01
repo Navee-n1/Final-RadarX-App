@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function TopMatchCard({ match }) {
   const {
@@ -12,6 +12,8 @@ export default function TopMatchCard({ match }) {
     experience_years,
     rank = 1,
   } = match;
+
+  const [showExplain, setShowExplain] = useState(false);
 
   const labelColors = {
     "Highly Recommended": "bg-green-100 text-green-700 border-green-300",
@@ -45,7 +47,7 @@ export default function TopMatchCard({ match }) {
   return (
     <div className="group bg-white/40 backdrop-blur-lg border border-gray-200 rounded-2xl p-5 shadow-xl transition-all duration-300 hover:shadow-purple-200 text-gray-800">
       
-      {/* Header Row */}
+      {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
           <div className={`w-10 h-10 bg-gradient-to-br ${rankGradient} rounded-xl flex items-center justify-center`}>
@@ -61,7 +63,7 @@ export default function TopMatchCard({ match }) {
         </span>
       </div>
 
-      {/* Vertical & Experience */}
+      {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-2">
         <span className={`text-xs font-medium px-2 py-1 rounded-full ${verticalClass}`}>
           {vertical}
@@ -73,7 +75,7 @@ export default function TopMatchCard({ match }) {
         )}
       </div>
 
-      {/* Match Score Bar */}
+      {/* Score Bar */}
       <div className="mb-3">
         <div className="flex justify-between items-center mb-1">
           <span className="text-sm font-medium text-cyan-700">Match Score</span>
@@ -87,17 +89,44 @@ export default function TopMatchCard({ match }) {
         </div>
       </div>
 
-      {/* Explanation */}
+      {/* Explain Match Toggle */}
       {explanation && (
-        <p className="text-xs text-gray-600 italic mb-3">
-          🧠 {explanation?.summary || explanation}
-        </p>
+        <button
+          onClick={() => setShowExplain(prev => !prev)}
+          className="text-xs text-purple-600 mt-2 underline"
+        >
+          {showExplain ? "Hide Explain Match" : "Show Explain Match"}
+        </button>
       )}
 
+      {/* Explanation */}
+      {showExplain && explanation && (
+        <div className="mt-3 bg-[#222] p-4 rounded-lg text-sm text-gray-300 space-y-2">
+          {explanation.summary && (
+            <p><strong>Summary:</strong> {explanation.summary}</p>
+          )}
+          {explanation.skills_matched?.length > 0 && (
+            <p><strong>Skills Matched:</strong> {explanation.skills_matched.join(', ')}</p>
+          )}
+          {explanation.skills_missing?.length > 0 && (
+            <p><strong>Missing Skills:</strong> {explanation.skills_missing.join(', ')}</p>
+          )}
+          {explanation.resume_highlights?.length > 0 && (
+            <>
+              <p><strong>Resume Highlights:</strong></p>
+              <ul className="list-disc ml-5">
+                {explanation.resume_highlights.map((h, i) => (
+                  <li key={i}>{h}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      )}
 
-      {/* Skill Tags */}
+      {/* Skill Chips */}
       {skills.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-2">
+        <div className="flex flex-wrap gap-2 mt-3">
           {skills.slice(0, 5).map((skill, idx) => (
             <span
               key={idx}
