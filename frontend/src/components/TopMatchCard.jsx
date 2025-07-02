@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function TopMatchCard({ match }) {
+export default function TopMatchCard({ match, isExpanded, onToggleExplain }) {
   const {
     name,
     emp_id,
@@ -12,8 +12,6 @@ export default function TopMatchCard({ match }) {
     experience_years,
     rank = 1,
   } = match;
-
-  const [showExplain, setShowExplain] = useState(false);
 
   const labelColors = {
     "Highly Recommended": "bg-green-100 text-green-700 border-green-300",
@@ -46,7 +44,6 @@ export default function TopMatchCard({ match }) {
 
   return (
     <div className="group bg-white/40 backdrop-blur-lg border border-gray-200 rounded-2xl p-5 shadow-xl transition-all duration-300 hover:shadow-purple-200 text-gray-800">
-      
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center space-x-3">
@@ -92,34 +89,40 @@ export default function TopMatchCard({ match }) {
       {/* Explain Match Toggle */}
       {explanation && (
         <button
-          onClick={() => setShowExplain(prev => !prev)}
-          className="text-xs text-purple-600 mt-2 underline"
+          onClick={onToggleExplain}
+          className="text-xs text-purple-600 font-medium mt-2 underline hover:text-purple-800 transition"
         >
-          {showExplain ? "Hide Explain Match" : "Show Explain Match"}
+          {isExpanded ? "Hide Explain Match" : "Show Explain Match"}
         </button>
       )}
 
       {/* Explanation */}
-      {showExplain && explanation && (
-        <div className="mt-3 bg-[#222] p-4 rounded-lg text-sm text-gray-300 space-y-2">
+      {isExpanded && explanation && (
+        <div className="mt-3 bgwhite-50 border border-gray-200 p-4 rounded-xl text-sm text-gray-800 space-y-3 transition-all duration-200">
           {explanation.summary && (
-            <p><strong>Summary:</strong> {explanation.summary}</p>
+            <p><strong>📝 Summary:</strong> {explanation.summary}</p>
           )}
           {explanation.skills_matched?.length > 0 && (
-            <p><strong>Skills Matched:</strong> {explanation.skills_matched.join(', ')}</p>
+            <p>
+              <strong>✅ Skills Matched:</strong>{' '}
+              <span className="text-green-700">{explanation.skills_matched.join(', ')}</span>
+            </p>
           )}
           {explanation.skills_missing?.length > 0 && (
-            <p><strong>Missing Skills:</strong> {explanation.skills_missing.join(', ')}</p>
+            <p>
+              <strong>⚠️ Missing Skills:</strong>{' '}
+              <span className="text-red-600">{explanation.skills_missing.join(', ')}</span>
+            </p>
           )}
           {explanation.resume_highlights?.length > 0 && (
-            <>
-              <p><strong>Resume Highlights:</strong></p>
-              <ul className="list-disc ml-5">
+            <div>
+              <p className="font-semibold">📌 Resume Highlights:</p>
+              <ul className="list-disc ml-5 text-gray-700">
                 {explanation.resume_highlights.map((h, i) => (
                   <li key={i}>{h}</li>
                 ))}
               </ul>
-            </>
+            </div>
           )}
         </div>
       )}

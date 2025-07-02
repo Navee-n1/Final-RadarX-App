@@ -20,6 +20,9 @@ export default function UploadJDPage() {
   const [cc, setCc] = useState('');
   const [emailSent, setEmailSent] = useState(false);
 
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+
   const userEmail = localStorage.getItem('email');
   const navigate = useNavigate();
 
@@ -202,9 +205,17 @@ useEffect(() => {
     </span>
 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {topMatches.map((match, i) => (
-                    <TopMatchCard key={i} match={{ ...match, rank: i + 1 }} />
-                  ))}
+                {topMatches.map((match, i) => (
+  <TopMatchCard
+    key={i}
+    match={{ ...match, rank: i + 1 }}
+    isExpanded={expandedIndex === i}
+    onToggleExplain={() =>
+      setExpandedIndex(prev => (prev === i ? null : i))
+    }
+  />
+))}
+
                 </div><div className="flex justify-center mt-10">
     <button
       onClick={resetUpload}

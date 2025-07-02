@@ -28,3 +28,103 @@
 2025-07-01 10:48:14,111 - INFO - No strong matches found for email summary
 2025-07-01 10:48:17,403 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
 2025-07-01 10:48:17,416 - INFO - Email log entry saved to database.
+2025-07-01 11:08:04,689 - INFO - Manual email triggered for JD ID 18 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 11:08:04,690 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 11:08:04,692 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 11:08:04,693 - INFO - No strong matches found for email summary
+2025-07-01 11:08:08,282 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 11:08:08,295 - INFO - Email log entry saved to database.
+2025-07-01 11:20:54,433 - INFO - Manual email triggered for JD ID 19 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 11:20:54,433 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 11:20:54,438 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 11:20:54,439 - INFO - No strong matches found for email summary
+2025-07-01 11:20:56,806 - INFO - Manual email triggered for JD ID 19 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 11:20:56,814 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 11:20:56,816 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 11:20:56,818 - INFO - No strong matches found for email summary
+2025-07-01 11:20:57,786 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 11:20:57,797 - INFO - Email log entry saved to database.
+2025-07-01 11:21:00,108 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 11:21:00,119 - INFO - Email log entry saved to database.
+2025-07-01 14:30:32,799 - INFO - Manual email triggered for JD ID 20 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 14:30:32,801 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 14:30:32,801 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 14:30:32,803 - INFO - No strong matches found for email summary
+2025-07-01 14:30:37,163 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 14:30:37,183 - INFO - Email log entry saved to database.
+2025-07-01 14:39:02,137 - INFO - Manual email triggered for JD ID 21 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 14:39:02,187 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 14:39:02,194 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 14:39:02,194 - INFO - No strong matches found for email summary
+2025-07-01 14:39:05,766 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 14:39:05,784 - INFO - Email log entry saved to database.
+2025-07-01 15:10:46,591 - INFO - Manual email triggered for JD ID 3 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 15:10:46,601 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 15:10:46,612 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 15:10:46,614 - INFO - No strong matches found for email summary
+2025-07-01 15:10:50,680 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 15:10:50,694 - INFO - Email log entry saved to database.
+2025-07-01 15:13:27,804 - INFO - Manual email triggered for JD ID 6 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 15:13:27,864 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 15:13:27,873 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 15:13:27,879 - INFO - No strong matches found for email summary
+2025-07-01 15:13:31,167 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 15:13:31,184 - INFO - Email log entry saved to database.
+2025-07-01 15:31:21,236 - INFO - Manual email triggered for JD ID 9 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 15:31:21,323 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 15:31:21,324 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 15:31:21,325 - INFO - No strong matches found for email summary
+2025-07-01 15:31:23,697 - INFO - Manual email triggered for JD ID 9 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 15:31:23,698 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 15:31:23,699 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 15:31:23,699 - INFO - No strong matches found for email summary
+2025-07-01 15:31:25,029 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 15:31:25,046 - INFO - Email log entry saved to database.
+2025-07-01 15:31:27,017 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 15:31:27,162 - INFO - Email log entry saved to database.
+2025-07-01 15:48:54,080 - INFO - Manual email triggered for JD ID 3 to 2000137271@hexaware.com with 3 matches.
+2025-07-01 15:48:54,081 - INFO - Valid attachments found: []
+2025-07-01 15:48:54,081 - INFO - Building HTML summary for 2 strong matches
+2025-07-01 15:48:58,418 - INFO - Email status: Email sent successfully to 2000137271@hexaware.com
+2025-07-01 15:48:58,435 - INFO - Email log entry saved to database.
+2025-07-01 16:04:55,381 - INFO - Manual email triggered for JD ID 1 to AddepalliN@hexaware.com with 3 matches.
+2025-07-01 16:04:55,382 - INFO - Valid attachments found: []
+2025-07-01 16:04:55,382 - INFO - Building HTML summary for 3 strong matches
+2025-07-01 16:04:58,987 - INFO - Email status: Email sent successfully to AddepalliN@hexaware.com
+2025-07-01 16:04:59,004 - INFO - Email log entry saved to database.
+2025-07-01 16:10:45,070 - INFO - Manual email triggered for JD ID 3 to addepallinaveenkumar85@gmail.com with 3 matches.
+2025-07-01 16:10:45,071 - INFO - Valid attachments found: []
+2025-07-01 16:10:45,072 - INFO - Building HTML summary for 2 strong matches
+2025-07-01 16:10:48,562 - INFO - Email status: Email sent successfully to addepallinaveenkumar85@gmail.com
+2025-07-01 16:10:48,575 - INFO - Email log entry saved to database.
+2025-07-01 16:24:01,376 - INFO - Manual email triggered for JD ID 14 to maheshmurari001@gmail.com with 1 matches.
+2025-07-01 16:24:01,377 - INFO - Valid attachments found: ['C:\\Users\\Administrator\\Desktop\\RadarX_Final_App\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf']
+2025-07-01 16:24:01,377 - INFO - Building HTML summary for 1 strong matches
+2025-07-01 16:24:05,516 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 16:24:05,530 - INFO - Email log entry saved to database.
+2025-07-01 16:27:19,971 - INFO - Manual email triggered for JD ID 15 to maheshmurari001@gmail.com with 2 matches.
+2025-07-01 16:27:19,973 - INFO - Valid attachments found: ['C:\\Users\\Administrator\\Desktop\\RadarX_Final_App\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf', 'C:\\Users\\Administrator\\Desktop\\RadarX_Final_App\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Jays_Resume.pdf']
+2025-07-01 16:27:19,974 - INFO - Building HTML summary for 2 strong matches
+2025-07-01 16:27:24,690 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 16:27:24,705 - INFO - Email log entry saved to database.
+2025-07-01 16:29:21,189 - INFO - Manual email triggered for JD ID 16 to maheshmurari001@gmail.com with 1 matches.
+2025-07-01 16:29:21,191 - INFO - Valid attachments found: ['C:\\Users\\Administrator\\Desktop\\RadarX_Final_App\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf']
+2025-07-01 16:29:21,193 - INFO - Building HTML summary for 1 strong matches
+2025-07-01 16:29:25,588 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 16:29:25,603 - INFO - Email log entry saved to database.
+2025-07-01 16:42:08,506 - INFO - Manual email triggered for JD ID 17 to maheshmurari001@gmail.com with 1 matches.
+2025-07-01 16:42:08,507 - INFO - Valid attachments found: ['C:\\Users\\Administrator\\Desktop\\RadarX_Final_App\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf']
+2025-07-01 16:42:08,510 - INFO - Building HTML summary for 1 strong matches
+2025-07-01 16:42:12,722 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 16:42:12,736 - INFO - Email log entry saved to database.
+2025-07-01 16:44:16,794 - INFO - Manual email triggered for JD ID 19 to maheshmurari001@gmail.com with 0 matches.
+2025-07-01 16:44:16,794 - INFO - No recommended matches. Email will be sent without attachments.
+2025-07-01 16:44:16,799 - INFO - Building HTML summary for 0 strong matches
+2025-07-01 16:44:16,806 - INFO - No strong matches found for email summary
+2025-07-01 16:44:20,445 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 16:44:20,457 - INFO - Email log entry saved to database.
+2025-07-01 17:10:43,898 - INFO - Manual email triggered for JD ID 21 to maheshmurari001@gmail.com with 1 matches.
+2025-07-01 17:10:43,900 - INFO - Valid attachments found: ['C:\\Users\\Administrator\\Desktop\\RadarX_Final_App\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf']
+2025-07-01 17:10:43,900 - INFO - Building HTML summary for 1 strong matches
+2025-07-01 17:10:48,180 - INFO - Email status: Email sent successfully to maheshmurari001@gmail.com
+2025-07-01 17:10:48,193 - INFO - Email log entry saved to database.

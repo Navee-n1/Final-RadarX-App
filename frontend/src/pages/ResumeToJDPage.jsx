@@ -8,6 +8,7 @@ export default function ResumeMatchSection() {
   const [resumeId, setResumeId] = useState(null);
   const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState(null);
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -48,10 +49,7 @@ export default function ResumeMatchSection() {
   };
 
   return (
-   
-    <div className=" flex flex-col items-center px-4 py-16 text-gray-800">
-
-      {/* Header */}
+    <div className="flex flex-col items-center px-4 py-16 text-gray-800">
       <div className="text-center space-y-6 mb-10">
         <div className="relative inline-flex items-center justify-center">
           <div className="absolute animate-ping-slow inline-flex h-16 w-16 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 opacity-30 blur-2xl"></div>
@@ -64,7 +62,6 @@ export default function ResumeMatchSection() {
         </h1>
       </div>
 
-      {/* Upload Box */}
       <div className="w-full max-w-xl space-y-4">
         <label className="block bg-white-200 hover:bg-purple-100 border border-purple-300 text-gray-700 font-medium px-6 py-4 rounded-xl cursor-pointer text-center transition-all">
           <UploadCloud className="inline-block mr-2 mb-1 text-purple-500" size={20} />
@@ -92,16 +89,16 @@ export default function ResumeMatchSection() {
         </button>
       </div>
 
-      {/* Matches */}
       {matches.length > 0 && (
         <div className="mt-16 w-full max-w-5xl">
           <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center tracking-tight">
             🏆 Top JD Matches
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {matches.map((match, i) => (
-              <MatchCard key={i} match={match} />
-            ))}
+          {matches.map((match, i) => (
+  <MatchCard key={i} match={match} />
+))}
+
           </div>
         </div>
       )}

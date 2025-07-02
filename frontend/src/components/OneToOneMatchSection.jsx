@@ -147,13 +147,8 @@ export default function OneToOneMatchPage() {
                 <p className="text-gray-600 mt-1">{result.explanation.jd_role}</p>
               </div>
               <div>
-                <p className="font-semibold text-gray-700 flex items-center gap-2">
-                  <Activity size={16} className="text-sky-500" /> Experience Match
-                </p>
-                <p className="text-gray-600 mt-1">
-                  {result.explanation.resume_experience_found || '-'} yrs
-                  <span className="text-gray-400"> / Required: {result.explanation.jd_experience_required} yrs</span>
-                </p>
+               
+               
               </div>
             </div>
 
