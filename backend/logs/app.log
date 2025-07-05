@@ -1,325 +1,162 @@
-[2025-06-29 10:12:57] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 10:12:57] DEBUG:  CC List: []
-[2025-06-29 10:13:04] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-29 10:17:52] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 10:17:52] DEBUG:  CC List: []
-[2025-06-29 10:17:52] DEBUG: Attachments: []
-[2025-06-29 10:17:56] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-29 11:58:15] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
-[2025-06-29 11:58:15] DEBUG:  CC List: ['dileshkumarkayala04@gmail.com']
-[2025-06-29 11:58:15] DEBUG: Attachments: []
-[2025-06-29 11:58:19] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
-[2025-06-29 11:58:19] DEBUG:  CC List: ['dileshkumarkayala04@gmail.com']
-[2025-06-29 11:58:19] DEBUG: Attachments: []
-[2025-06-29 11:58:21] INFO: Email sent successfully to: addepallinaveenkumar85@gmail.com
-[2025-06-29 11:58:23] INFO: Email sent successfully to: addepallinaveenkumar85@gmail.com
-[2025-06-29 13:18:56] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
-[2025-06-29 13:18:56] DEBUG:  CC List: ['dileshkumarkayala04@gmail.com']
-[2025-06-29 13:18:56] DEBUG: Attachments: []
-[2025-06-29 13:19:00] INFO: Email sent successfully to: addepallinaveenkumar85@gmail.com
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:38:18] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:38:18] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 15:38:19] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:25] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 15:43:25] DEBUG:  CC List: []
-[2025-06-29 15:43:25] DEBUG: Attachments: []
-[2025-06-29 15:43:29] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:43:48] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:48] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 15:43:50] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 15:43:50] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Megha_SyamKatluru_InternshalaResume_1.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\AmazonLeadershipPrinciples.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\SDE_Resume.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Fullstack_Developer_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 16:48:24] WARNING: JD file does not exist at path: C:\Users\MAHESH MURARI\Desktop\RadarX\backend\uploads\jds\Data_Science_Resume.docx
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:24] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 16:48:25] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:25] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.docx
-[2025-06-29 16:48:26] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 16:48:26] DEBUG: Resolved JD path: C:\Users\Administrator\Desktop\Final_APP\RadarX\backend\uploads\jds\SDE_Job_Description.pdf
-[2025-06-29 18:58:45] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 18:58:45] DEBUG:  CC List: []
-[2025-06-29 18:58:45] DEBUG: Attachments: []
-[2025-06-29 18:58:49] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-29 19:22:54] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
-[2025-06-29 19:22:54] DEBUG:  CC List: []
-[2025-06-29 19:22:54] DEBUG: Attachments: []
-[2025-06-29 19:23:00] INFO: Email sent successfully to: addepallinaveenkumar85@gmail.com
-[2025-06-29 22:00:28] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 22:00:28] DEBUG:  CC List: []
-[2025-06-29 22:00:28] DEBUG: Attachments: []
-[2025-06-29 22:00:33] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-29 22:01:58] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 22:01:58] DEBUG:  CC List: []
-[2025-06-29 22:01:58] DEBUG: Attachments: []
-[2025-06-29 22:02:01] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-29 23:52:08] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-29 23:52:08] DEBUG:  CC List: []
-[2025-06-29 23:52:08] DEBUG: Attachments: []
-[2025-06-29 23:52:11] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-30 18:54:50] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-06-30 18:54:50] DEBUG:  CC List: []
-[2025-06-30 18:54:50] DEBUG: Attachments: ['C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Resume.pdf', 'C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Mahesh_Murari_Resume_1.pdf', 'C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Data_Science_Resume.docx']
-[2025-06-30 18:54:50] INFO:  Attachment added: SDE_Resume.pdf
-[2025-06-30 18:54:50] INFO:  Attachment added: Mahesh_Murari_Resume_1.pdf
-[2025-06-30 18:54:50] INFO:  Attachment added: Data_Science_Resume.docx
-[2025-06-30 18:54:56] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-06-30 21:47:29] INFO:  Preparing to send email to: maheshmurari003@gmail.com
-[2025-06-30 21:47:29] DEBUG:  CC List: []
-[2025-06-30 21:47:29] DEBUG: Attachments: []
-[2025-06-30 21:47:35] INFO: Email sent successfully to: maheshmurari003@gmail.com
-[2025-07-01 01:20:40] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-07-01 01:20:40] DEBUG:  CC List: []
-[2025-07-01 01:20:40] DEBUG: Attachments: []
-[2025-07-01 01:20:44] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-07-01 01:23:05] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-07-01 01:23:05] DEBUG:  CC List: []
-[2025-07-01 01:23:05] DEBUG: Attachments: []
-[2025-07-01 01:23:08] INFO: Email sent successfully to: maheshmurari001@gmail.com
-[2025-07-01 09:55:39] INFO:  Preparing to send email to: maheshmurari001@gmail.com
-[2025-07-01 09:55:39] DEBUG:  CC List: []
-[2025-07-01 09:55:39] DEBUG: Attachments: []
-[2025-07-01 09:55:42] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-03 21:56:05] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-03 21:56:05] DEBUG:  CC List: []
+[2025-07-03 21:56:05] DEBUG: Attachments: []
+[2025-07-03 21:56:10] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-03 22:35:33] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-03 22:35:33] DEBUG:  CC List: []
+[2025-07-03 22:35:33] DEBUG: Attachments: []
+[2025-07-03 22:35:39] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-03 22:35:39] DEBUG:  CC List: []
+[2025-07-03 22:35:39] DEBUG: Attachments: []
+[2025-07-03 22:35:41] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-03 22:35:42] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 20:49:44] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 20:49:44] DEBUG:  CC List: []
+[2025-07-04 20:49:44] DEBUG: Attachments: []
+[2025-07-04 20:49:48] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 21:01:29] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 21:01:29] DEBUG:  CC List: []
+[2025-07-04 21:01:29] DEBUG: Attachments: []
+[2025-07-04 21:01:32] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 21:13:12] INFO: Received JD to Resumes match request for JD ID: 35
+[2025-07-04 21:18:26] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 21:18:26] DEBUG:  CC List: []
+[2025-07-04 21:18:26] DEBUG: Attachments: []
+[2025-07-04 21:18:29] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 21:40:56] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 21:40:56] DEBUG:  CC List: []
+[2025-07-04 21:40:56] DEBUG: Attachments: []
+[2025-07-04 21:41:00] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 21:43:41] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:43:42] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:43:42] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 21:43:42] DEBUG:  CC List: []
+[2025-07-04 21:43:42] DEBUG: Attachments: []
+[2025-07-04 21:43:44] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:43:44] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:43:44] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:43:45] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:43:45] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 21:43:47] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:44:05] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:19] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:19] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:22] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:25] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:28] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:30] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:30] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 21:53:30] DEBUG:  CC List: []
+[2025-07-04 21:53:30] DEBUG: Attachments: []
+[2025-07-04 21:53:31] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:33] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 21:53:33] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:34] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:34] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:35] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:53:36] INFO: JD-to-Resumes Match Request Received for JD ID: 40
+[2025-07-04 21:53:39] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:56:10] INFO: JD-to-Resumes Match Request Received for JD ID: 41
+[2025-07-04 21:56:10] INFO: JD-to-Resumes Match Request Received for JD ID: 41
+[2025-07-04 21:56:13] INFO: JD-to-Resumes Match Request Received for JD ID: 41
+[2025-07-04 21:56:16] INFO: JD-to-Resumes Match Request Received for JD ID: 41
+[2025-07-04 21:56:19] INFO: JD-to-Resumes Match Request Received for JD ID: 41
+[2025-07-04 21:56:22] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:56:23] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:56:23] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:56:24] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:56:24] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 21:56:24] DEBUG:  CC List: []
+[2025-07-04 21:56:24] DEBUG: Attachments: []
+[2025-07-04 21:56:25] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 21:56:27] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 22:05:29] INFO: JD-to-Resumes Match Request Received for JD ID: 42
+[2025-07-04 22:05:29] INFO: JD-to-Resumes Match Request Received for JD ID: 42
+[2025-07-04 22:05:45] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:05:45] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:06:42] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 22:06:42] DEBUG:  CC List: ['maheshmurari003@gmail.com']
+[2025-07-04 22:06:42] DEBUG: Attachments: ['C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Data_Science_Resume.docx', 'C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\Data_Science_Resume.docx']
+[2025-07-04 22:06:42] INFO:  Attachment added: Data_Science_Resume.docx
+[2025-07-04 22:06:42] INFO:  Attachment added: Data_Science_Resume.docx
+[2025-07-04 22:06:46] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-04 22:11:06] INFO: JD-to-Resumes Match Request Received for JD ID: 43
+[2025-07-04 22:11:06] INFO: JD-to-Resumes Match Request Received for JD ID: 43
+[2025-07-04 22:11:23] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:11:24] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:15:00] INFO: JD-to-Resumes Match Request Received for JD ID: 44
+[2025-07-04 22:15:00] INFO: JD-to-Resumes Match Request Received for JD ID: 44
+[2025-07-04 22:15:15] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:15:16] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:17:07] INFO: JD-to-Resumes Match Request Received for JD ID: 45
+[2025-07-04 22:17:07] INFO: JD-to-Resumes Match Request Received for JD ID: 45
+[2025-07-04 22:17:25] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:17:26] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:18:37] INFO: JD-to-Resumes Match Request Received for JD ID: 46
+[2025-07-04 22:18:37] INFO: JD-to-Resumes Match Request Received for JD ID: 46
+[2025-07-04 22:18:50] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:18:54] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 22:22:01] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-04 22:22:17] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 23:29:17] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-04 23:29:17] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-04 23:29:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 23:29:38] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-04 23:30:29] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-04 23:30:29] DEBUG:  CC List: ['addepallinaveenkumar85@gmail.com']
+[2025-07-04 23:30:29] DEBUG: Attachments: ['C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Job_Description.pdf']
+[2025-07-04 23:30:29] INFO:  Attachment added: SDE_Job_Description.pdf
+[2025-07-04 23:30:33] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-05 12:26:03] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-05 12:26:03] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-05 12:26:17] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 12:26:17] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 15:38:45] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-05 15:39:03] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 15:50:25] INFO: JD-to-Resumes Match Request Received for JD ID: 7
+[2025-07-05 15:50:25] INFO: JD-to-Resumes Match Request Received for JD ID: 7
+[2025-07-05 15:50:38] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 15:50:39] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 16:03:03] INFO: JD-to-Resumes Match Request Received for JD ID: 8
+[2025-07-05 16:03:03] INFO: JD-to-Resumes Match Request Received for JD ID: 8
+[2025-07-05 16:03:20] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 16:03:21] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 19:44:50] INFO: JD-to-Resumes Match Request Received for JD ID: 11
+[2025-07-05 19:44:50] INFO: JD-to-Resumes Match Request Received for JD ID: 11
+[2025-07-05 19:45:08] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 19:45:08] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 19:45:38] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-05 19:45:38] DEBUG:  CC List: []
+[2025-07-05 19:45:38] DEBUG: Attachments: ['C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Job_Description.pdf']
+[2025-07-05 19:45:38] INFO:  Attachment added: SDE_Job_Description.pdf
+[2025-07-05 19:45:41] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-05 20:08:38] INFO: JD-to-Resumes Match Request Received for JD ID: 12
+[2025-07-05 20:08:38] INFO: JD-to-Resumes Match Request Received for JD ID: 12
+[2025-07-05 20:08:59] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 20:08:59] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 20:17:56] INFO: JD-to-Resumes Match Request Received for JD ID: 13
+[2025-07-05 20:17:56] INFO: JD-to-Resumes Match Request Received for JD ID: 13
+[2025-07-05 20:18:15] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 20:18:15] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 20:18:57] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-05 20:18:57] DEBUG:  CC List: []
+[2025-07-05 20:18:57] DEBUG: Attachments: ['C:\\Users\\MAHESH MURARI\\Desktop\\RadarX\\backend\\routes\\..\\uploads\\resumes\\SDE_Job_Description.pdf']
+[2025-07-05 20:18:57] INFO:  Attachment added: SDE_Job_Description.pdf
+[2025-07-05 20:19:01] INFO: Email sent successfully to: maheshmurari001@gmail.com
+[2025-07-05 21:27:45] INFO: JD-to-Resumes Match Request Received for JD ID: 14
+[2025-07-05 21:27:46] INFO: JD-to-Resumes Match Request Received for JD ID: 14
+[2025-07-05 21:27:56] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 21:27:56] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 22:33:21] INFO: JD-to-Resumes Match Request Received for JD ID: 15
+[2025-07-05 22:33:21] INFO: JD-to-Resumes Match Request Received for JD ID: 15
+[2025-07-05 22:33:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 22:33:32] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 22:35:14] INFO: JD-to-Resumes Match Request Received for JD ID: 16
+[2025-07-05 22:35:14] INFO: JD-to-Resumes Match Request Received for JD ID: 16
+[2025-07-05 22:35:25] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 22:35:25] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 22:38:32] INFO: JD-to-Resumes Match Request Received for JD ID: 17
+[2025-07-05 22:38:32] INFO: JD-to-Resumes Match Request Received for JD ID: 17
+[2025-07-05 22:38:32] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-05 22:38:32] INFO: Matching completed. Returning top 3 profiles.

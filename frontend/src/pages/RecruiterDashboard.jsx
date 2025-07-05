@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import ResumeToJDPage from './ResumeToJDPage';
 import OneToOneMatchSection from '../components/OneToOneMatchSection';
 import ViewJDMatches from '../components/ViewJDMatches';
 import SearchResultsCard from '../components/SearchResultsCard';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PlusCircle, Search, UploadCloud, Filter, Users, FileText, ClipboardCheck } from 'lucide-react';
+import AgentHealthPage from './AgentHealthPage';
+import {
+  PlusCircle,
+  Search,
+  Filter,
+  Users,
+  FileText,
+  ClipboardCheck,
+} from 'lucide-react';
 import { useMotionValue, useTransform, animate } from 'framer-motion';
-
 
 const verticalOptions = [
   'Banking', 'Healthcare', 'Insurance', 'GTT', 'HTPS', 'GEN-AI', 'Cloud', 'Hexavarsity', 'Others'
@@ -31,23 +38,58 @@ export default function RecruiterDashboard() {
   const [status, setStatus] = useState('');
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [summary, setSummary] = useState({ profiles: 0, jds: 0, matches: 0 });
+  const [agentHealth, setAgentHealth] = useState('Checking...');
 
-  useEffect(() => {
+
+ useEffect(() => {
+  const token = localStorage.getItem('token');
+  if (!token) window.location.href = '/';
+
+  axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
-    if (!token) window.location.href = '/';
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  });
 
-    axios.interceptors.request.use((config) => {
-      const token = localStorage.getItem('token');
-      if (token) config.headers.Authorization = `Bearer ${token}`;
-      return config;
-    });
+  fetchSummary(); // Only runs once on initial load
 
-    axios.get('http://127.0.0.1:5000/recruiter/summary')
-      .then((res) => setSummary(res.data))
-      .catch(() => {});
-  }, []);
+  axios.get('http://127.0.0.1:5000/match/health')
+    .then((res) => setAgentHealth(res.data.status))
+    .catch(() => setAgentHealth('❌ Engine not responding'));
+}, []);
 
-  const handleResumeUpload = (e) => setProfileFile(e.target.files[0]);
+
+
+const fetchSummary = () => {
+  axios.get('http://127.0.0.1:5000/recruiter/summary')
+    .then((res) => setSummary(res.data))
+    .catch(() => {});
+};
+
+const handleResumeUpload = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const allowedTypes = [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  ];
+  const maxSize = 3 * 1024 * 1024;
+
+  if (!allowedTypes.includes(file.type)) {
+    alert('❌ Invalid file type. Only PDF, DOC, DOCX allowed.');
+    return;
+  }
+
+  if (file.size > maxSize) {
+    alert('❌ File too large. Must be under 3MB.');
+    return;
+  }
+
+  setProfileFile(file);
+};
+
 
   const uploadProfile = async () => {
     if (!empId || !name || !profileFile || !vertical) return alert('Fill all fields.');
@@ -61,6 +103,7 @@ export default function RecruiterDashboard() {
       await axios.post('http://127.0.0.1:5000/upload-profile', formData);
       setStatus('✅ Profile uploaded successfully');
       setShowUploadModal(false);
+      fetchSummary();
     } catch {
       setStatus('❌ Upload failed');
     }
@@ -83,23 +126,26 @@ export default function RecruiterDashboard() {
       alert('❌ Failed to fetch profiles.');
     }
   };
+
+ 
+  
+
   const AnimatedCount = ({ target }) => {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.floor(latest).toLocaleString());
-
-  useEffect(() => {
-    const controls = animate(count, target, { duration: 2 });
-    return controls.stop;
-  }, [target]);
-
-  return <motion.span>{rounded}</motion.span>;
-};
+    const count = useMotionValue(0);
+    const rounded = useTransform(count, (latest) => Math.floor(latest).toLocaleString());
+    useEffect(() => {
+      const controls = animate(count, target, { duration: 2 });
+      return controls.stop;
+    }, [target]);
+    return <motion.span>{rounded}</motion.span>;
+  };
 
   const navTabs = [
     { key: 'search', label: 'Profiles' },
     { key: 'resume', label: 'Resume → JD' },
     { key: 'onetoone', label: 'One-to-One' },
-    { key: 'jds', label: 'View JDs' }
+    { key: 'jds', label: 'View JDs' },
+    { key: 'health', label: 'Agent Health' }  // ✅ new
   ];
 
   return (
@@ -107,7 +153,7 @@ export default function RecruiterDashboard() {
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm px-6 py-4 flex justify-between items-center">
         <h1 className="text-3xl font-bold tracking-tight text-gray-800">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-700 via-pink to-pink-500">Radar</span>
-          <span className="bg-gradient-to-r from-pink-100 to-pink-600 text-white shadow px-1 ">X</span>
+          <span className="bg-gradient-to-r from-pink-100 to-pink-600 text-white shadow px-1">X</span>
           <span className="text-sm text-grey-200 font-medium ml-2">| Recruiter</span>
         </h1>
         <nav className="flex gap-6 items-center">
@@ -139,72 +185,124 @@ export default function RecruiterDashboard() {
         <AnimatePresence mode="wait">
           {activeSection === 'search' && (
             <motion.div key="search" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              
-              {/* Summary Section */}
-             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
-  {[{
-    icon: Users,
-    label: 'Consultants',
-    value: summary.profiles,
-    from: '#6B21A8',
-    to: '#9333EA',
-  }, {
-    icon: FileText,
-    label: 'Job Descriptions',
-    value: summary.jds,
-    from: '#2563EB',
-    to: '#3B82F6',
-  }, {
-    icon: ClipboardCheck,
-    label: 'Matches',
-    value: summary.matches,
-    from: '#059669',
-    to: '#10B981',
-  }].map(({ icon: Icon, label, value, from, to }, idx) => (
-    <motion.div
-      key={idx}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: idx * 0.1 }}
-      className="relative rounded-3xl p-6 backdrop-blur-lg bg-white/30 shadow-lg border border-white/30"
-    >
-      <div
-        className="absolute inset-0 z-0 rounded-3xl pointer-events-none"
-        style={{
-          background: `linear-gradient(135deg, ${from}, ${to})`,
-          opacity: 0.05,
-        }}
-      />
-      <div className="relative z-10 flex flex-col items-center space-y-3 text-center">
-        <div
-          className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-white/50 to-white/10 backdrop-blur border border-white/30 shadow-inner hover:scale-105 transition"
-          style={{ boxShadow: `0 0 15px -5px ${to}` }}
-        >
-          <Icon className="w-6 h-6 text-gray-700" />
-        </div>
-        <p className="text-base font-semibold text-gray-700 tracking-wide">{label}</p>
-        <h3 className="text-4xl font-extrabold text-gray-900">
-          <AnimatedCount target={value} />
-        </h3>
-      </div>
-    </motion.div>
-  ))}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-10">
+                {[{
+                  icon: Users,
+                  label: 'Consultants',
+                  value: summary.profiles,
+                  from: '#6B21A8',
+                  to: '#9333EA',
+                }, {
+                  icon: FileText,
+                  label: 'Job Descriptions',
+                  value: summary.jds,
+                  from: '#2563EB',
+                  to: '#3B82F6',
+                }, {
+                  icon: ClipboardCheck,
+                  label: 'Matches',
+                  value: summary.matches,
+                  from: '#059669',
+                  to: '#10B981',
+                }].map(({ icon: Icon, label, value, from, to }, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    className="relative rounded-3xl p-6 backdrop-blur-lg bg-white/30 shadow-lg border border-white/30"
+                  >
+                    <div
+                      className="absolute inset-0 z-0 rounded-3xl pointer-events-none"
+                      style={{ background: `linear-gradient(135deg, ${from}, ${to})`, opacity: 0.05 }}
+                    />
+                    <div className="relative z-10 flex flex-col items-center space-y-3 text-center">
+                      <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-white/50 to-white/10 backdrop-blur border border-white/30 shadow-inner hover:scale-105 transition"
+                        style={{ boxShadow: `0 0 15px -5px ${to}` }}
+                      >
+                        <Icon className="w-6 h-6 text-gray-700" />
+                      </div>
+                      <p className="text-base font-semibold text-gray-700 tracking-wide">{label}</p>
+                      <h3 className="text-4xl font-extrabold text-gray-900">
+                        <AnimatedCount target={value} />
+                      </h3>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+             {/* Search and Upload UI */}
+<div className="flex justify-between items-center mt-2 mb-4">
+  <h2 className="text-2xl font-bold tracking-wide text-center flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-sky-500">
+    <Search size={28} className="text-purple-600" />
+    Search Consultant Profiles
+  </h2>
+  <button
+    onClick={() => setShowUploadModal(true)}
+    className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition"
+  >
+    <PlusCircle size={20} />
+    Upload Profile
+  </button>
 </div>
 
+{showUploadModal && (
+  <div className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 flex items-center justify-center">
+    <div className="bg-white p-6 rounded-xl shadow-xl space-y-4 w-full max-w-md">
+      <h3 className="text-xl font-bold text-purple-700">Upload Consultant Profile</h3>
+      <input
+        placeholder="Emp ID"
+        value={empId}
+        onChange={(e) => setEmpId(e.target.value)}
+        className="w-full border px-3 py-2 rounded"
+      />
+      <input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="w-full border px-3 py-2 rounded"
+      />
+      <select
+        value={vertical}
+        onChange={(e) => setVertical(e.target.value)}
+        className="w-full border px-3 py-2 rounded"
+      >
+        <option value="">Select Vertical</option>
+        {verticalOptions.map((v) => (
+          <option key={v} value={v}>
+            {v}
+          </option>
+        ))}
+      </select>
+      <input
+        placeholder="Experience (Years)"
+        type="number"
+        value={experience}
+        onChange={(e) => setExperience(e.target.value)}
+        className="w-full border px-3 py-2 rounded"
+      />
+      <input type="file" accept=".pdf,.doc,.docx" onChange={handleResumeUpload} className="w-full" />
 
-              {/* Search and Upload UI */}
-              <div className="flex justify-between items-center mt-2 mb-4">
-                <h2 className="text-2xl font-bold tracking-wide text-center flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-sky-500">
-                  <Search size={28} className="text-purple-600" />
-                  Search Consultant Profiles
-                </h2>
-                <button
-                  onClick={() => setShowUploadModal(true)}
-                  className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition"
-                >
-                  <PlusCircle size={20} /> Upload Profile
-                </button>
-              </div>
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={() => setShowUploadModal(false)}
+          className="px-4 py-2 border rounded text-gray-700"
+        >
+          Cancel
+        </button>
+        <button
+          onClick={uploadProfile}
+          className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+        >
+          Upload
+        </button>
+      </div>
+      {status && <p className="text-sm text-center">{status}</p>}
+    </div>
+  </div>
+)}
+
 
               {/* Search Inputs */}
               <div className="grid md:grid-cols-5 gap-4">
@@ -246,36 +344,23 @@ export default function RecruiterDashboard() {
               <ViewJDMatches />
             </motion.div>
           )}
+       {activeSection === 'health' && (
+  <motion.div
+    key="health"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="w-full text-center mt-8"
+  >
+    <h2 className="text-xl font-semibold text-purple-700 mb-4">Agent Status</h2>
+    <p className="text-lg text-gray-700">{agentHealth}</p>
+    <AgentHealthPage />
+  </motion.div>
+)}
+
+
         </AnimatePresence>
       </main>
-
-      {/* Upload Modal */}
-      {showUploadModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white rounded-2xl p-8 w-full max-w-xl relative shadow-xl">
-            <button onClick={() => setShowUploadModal(false)} className="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-xl">×</button>
-            <h2 className="text-xl font-bold mb-6 text-center text-purple-700">Upload Consultant Profile</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input placeholder="Employee ID" value={empId} onChange={(e) => setEmpId(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl" />
-              <input placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl" />
-              <select value={vertical} onChange={(e) => setVertical(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl">
-                <option value="">Select Vertical</option>
-                {verticalOptions.map(v => <option key={v} value={v}>{v}</option>)}
-              </select>
-              <input placeholder="Experience (Years)" type="number" value={experience} onChange={(e) => setExperience(e.target.value)} className="border border-gray-300 px-4 py-2 rounded-xl" />
-            </div>
-            <div className="mt-4">
-              <label className="block bg-purple-100 hover:bg-purple-200 text-purple-700 font-medium px-6 py-3 rounded-lg cursor-pointer transition text-center">
-                📎 Choose Resume File
-                <input type="file" onChange={handleResumeUpload} className="hidden" />
-              </label>
-            </div>
-            {profileFile && <p className="text-sm text-green-600 mt-2">✅ {profileFile.name}</p>}
-            <button onClick={uploadProfile} className="mt-6 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl shadow hover:scale-105 transition">Upload</button>
-            {status && <p className="text-sm mt-3 text-gray-700 text-center">{status}</p>}
-          </div>
-        </div>
-      )}
 
       <footer className="border-t border-gray-200 bg-white text-center py-3 text-sm text-gray-500 mt-auto">
         © 2025 RadarX. All rights reserved by House of Starks.

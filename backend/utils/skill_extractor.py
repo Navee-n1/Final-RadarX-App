@@ -2,81 +2,95 @@ import os
 import re
 import spacy
 from nltk.corpus import stopwords
- 
-nlp = spacy.load("en_core_web_sm")
-stop_words = set(stopwords.words("english"))
- 
-NOISE_WORDS = {"team", "project", "solution", "experience", "technologies", "development", "ability"}
- 
-def extract_skills(text):
-    import re
- 
-    # Sample skill whitelist – add or expand as needed
-    SKILL_WHITELIST = {
-        'python', 'java', 'sql', 'html', 'css', 'react', 'node.js', 'node', 'aws', 'azure', 'docker',
-        'kubernetes', 'mongodb', 'linux', 'flask', 'django', 'c++', 'c#', 'git', 'github',
-        'spring', 'angular', 'typescript', 'data analysis', 'pandas', 'numpy', 'machine learning',
-        'nlp', 'excel', 'power bi', 'tableau', 'api', 'rest', 'graphql'
-    }
- 
-    # Extract potential skill-like words using basic regex
-    words = re.findall(r'\b[a-zA-Z+#.]{2,20}\b', text)
- 
-    cleaned = set()
-    for word in words:
-        w = word.lower()
-        if w in SKILL_WHITELIST:
-            cleaned.add(w)
- 
-    return list(cleaned)
- 
-# ⬇️ Add these for matching APIs (DO NOT REMOVE ABOVE)
- 
+from collections import defaultdict
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
- 
-def extract_text(file):
-    if isinstance(file, str):
-        # It's a DB-stored relative file path, convert it to full absolute path
-        file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', file))
-        if not os.path.exists(file_path):
-            raise FileNotFoundError(f"❌ File not found: {file_path}")
-        with open(file_path, 'rb') as f:
-            return f.read().decode('utf-8', errors='ignore')
-    else:
-        # It's a FileStorage object from request.files
-        return file.read().decode('utf-8', errors='ignore')
- 
- 
+
+# Load Spacy model and NLTK stopwords once
+nlp = spacy.load("en_core_web_sm")
+stop_words = set(stopwords.words("english"))
+
+# Whitelist skills and their categories
+SKILL_WHITELIST = {
+    'python', 'java', 'c++', 'c#', 'html', 'css', 'javascript', 'typescript', 'sql',
+    'react', 'node.js', 'angular', 'flask', 'django', 'spring', 'next.js',
+    'aws', 'azure', 'gcp', 'docker', 'kubernetes', 'linux',
+    'power bi', 'tableau', 'pandas', 'numpy', 'matplotlib',
+    'git', 'github', 'bitbucket',
+    'api', 'rest', 'graphql', 'nlp', 'machine learning', 'deep learning'
+}
+
+CATEGORY_MAP = {
+    'Languages': {'python', 'java', 'c++', 'c#', 'html', 'css', 'javascript', 'typescript', 'sql'},
+    'Frameworks': {'react', 'angular', 'flask', 'django', 'spring', 'next.js'},
+    'Cloud/DevOps': {'aws', 'azure', 'gcp', 'docker', 'kubernetes', 'linux'},
+    'Tools': {'git', 'github', 'bitbucket'},
+    'Data/Analytics': {'power bi', 'tableau', 'pandas', 'numpy', 'matplotlib'},
+    'AI/ML': {'nlp', 'machine learning', 'deep learning'},
+    'APIs': {'api', 'rest', 'graphql'},
+}
+
+NOISE_WORDS = {"team", "project", "solution", "experience", "technologies", "development", "ability", "skill"}
+
+
+# ──────────────────────────────
+# Tokenize and clean text input
+# ──────────────────────────────
+def clean_tokens(text):
+    words = re.findall(r'\b[a-zA-Z0-9+#.]{2,20}\b', text)
+    cleaned = [w.lower() for w in words if w.lower() not in stop_words and w.lower() not in NOISE_WORDS]
+    return cleaned
+
+
+# ──────────────────────────────
+# Extract skills from text using whitelist & n-grams
+# ──────────────────────────────
+def extract_skills(text):
+    tokens = clean_tokens(text)
+    text_lower = text.lower()
+    found = set()
+
+    # Match whitelist skills directly in text (full text match)
+    for skill in SKILL_WHITELIST:
+        if skill in text_lower:
+            found.add(skill)
+
+    # Check bigrams (2-word sequences) for multi-word skills
+    bigrams = [' '.join(tokens[i:i+2]) for i in range(len(tokens) - 1)]
+    for bg in bigrams:
+        if bg in SKILL_WHITELIST:
+            found.add(bg)
+
+    return sorted(found)
+
+
+# ──────────────────────────────
+# Group extracted skills by category, fallback to Others
+# ──────────────────────────────
+def categorize_skills(skills):
+    grouped = defaultdict(list)
+    for skill in skills:
+        placed = False
+        for category, items in CATEGORY_MAP.items():
+            if skill in items:
+                grouped[category].append(skill)
+                placed = True
+                break
+        if not placed:
+            grouped["Others"].append(skill)
+    return dict(grouped)
+
+
+# ──────────────────────────────
+# Compute TF-IDF cosine similarity score between two texts
+# ──────────────────────────────
 def compute_similarity_score(text1, text2):
-    vectorizer = TfidfVectorizer()
-    vectors = vectorizer.fit_transform([text1, text2])
-    return cosine_similarity(vectors[0], vectors[1])[0][0]
- 
-def get_label(score):
-    if score >= 0.75:
-        return "Excellent Match"
-    elif score >= 0.5:
-        return "Good Match"
-    elif score >= 0.3:
-        return "Moderate Match"
-    else:
-        return "Low Match"
- 
-def generate_explanation(jd_text, resume_text):
-    jd_skills = set(extract_skills(jd_text))
-    resume_skills = set(extract_skills(resume_text))
-    matched_skills = jd_skills.intersection(resume_skills)
-
-    if not matched_skills:
-        return "No overlapping skills found."
-
-    return f"Matched skills: {', '.join(sorted(matched_skills))}"
-
-def extract_experience(text):
-    """
-    Extracts number of years of experience from the JD text.
-    Returns an integer like 1, 2, 3... or 0 if not found.
-    """
-    match = re.search(r'(\d+)\+?\s*(years|yrs).*experience', text.lower())
-    return int(match.group(1)) if match else 0
+    try:
+        vectorizer = TfidfVectorizer().fit([text1, text2])
+        tfidf_matrix = vectorizer.transform([text1, text2])
+        score = float(cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0])
+        return score
+    except Exception as e:
+        # Optional: log error if you have a logger
+        # logger.error(f"Similarity scoring failed: {e}")
+        return 0.0

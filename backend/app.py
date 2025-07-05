@@ -11,8 +11,11 @@ from routes.match_routes import match_bp
 from routes.email_routes import email_bp 
 from routes.profile_routes import profile_bp
 from routes.auth_routes import auth_bp
-from routes.recruiter_routes import recruiter_bp
 from routes.report_routes import report_bp
+from routes.tracker_routes import tracker_bp
+from routes.admin_routes import admin_bp
+from routes.status_routes import status_bp
+
 
 
 
@@ -38,8 +41,12 @@ app.register_blueprint(match_bp)
 app.register_blueprint(email_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(auth_bp)
-app.register_blueprint(recruiter_bp)
+
 app.register_blueprint(report_bp)
+app.register_blueprint(tracker_bp)
+app.register_blueprint(admin_bp)
+app.register_blueprint(status_bp)
+
 
 
 @app.route("/")

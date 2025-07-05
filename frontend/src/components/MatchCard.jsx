@@ -1,95 +1,192 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import { Briefcase, CheckCircle, AlertTriangle, Pin, ThumbsUp,ThumbsDown,Info} from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronUp,
+  Sparkles,
+  Eye,
+  AlertTriangle,
+  Pin,
+  BadgeCheck,
+  StickyNote,
+  FileText,
+} from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function MatchCard({ match }) {
-  const [showExplain, setShowExplain] = useState(false);
-  const [voted, setVoted] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
 
-  const handleFeedback = async (type) => {
-    try {
-      await axios.post('http://127.0.0.1:5000/feedback', {
-        jd_id: match.jd_id || 0,
-        resume_id: match.resume_id,
-        vote: type,
-        given_by: 'recruiter@hexaware.com',
-      });
-      setVoted(type);
-    } catch (err) {
-      console.error('Feedback failed', err);
-    }
+  const {
+    jd_id,
+    job_title,
+    score = 0,
+    label,
+    explanation,
+    skills = [],
+    resume_path,
+    file_path,
+    rank = 1,
+  } = match;
+
+  const safeExplanation =
+    typeof explanation === 'string' ? JSON.parse(explanation || '{}') : explanation || {};
+
+  const labelColors = {
+    "Highly Recommended": "bg-green-100 text-green-700 border-green-300",
+    "Recommended": "bg-blue-100 text-blue-700 border-blue-300",
+    "Explore": "bg-yellow-100 text-yellow-700 border-yellow-300",
   };
+  const labelStyle = labelColors[label] || "bg-gray-100 text-gray-800 border-gray-300";
+
+  const previewURL = resume_path
+    ? `http://127.0.0.1:5000${resume_path}`
+    : file_path
+    ? `http://127.0.0.1:5000${file_path}`
+    : null;
 
   return (
-    <div className="bg-white/5 rounded-2xl shadow-lg p-5 border border-gray-700 hover:scale-[1.02] transition-transform duration-200">
-     <div className="flex items-center gap-4">
-    <Briefcase className="w-7 h-7 text-blue-400" />
-   
-    <div>
-      <h3 className="font-bold text-lg bg-gradient-to-br from-purple-300 to-pink-600 text-transparent bg-clip-text">
-        JD #{match.jd_id} — {match.job_title || match.file}
-      </h3>
-      <p className="text-sm text-gray-400">
-        Match Score: <span className="font-bold text-pink-600">{match.score*100}%</span>
-      </p>
-      <p className="text-sm text-gray-400">{match.label}</p>
-    </div>
-  </div>
-   
-   
-      <div className="mt-4 flex gap-3">
-        {match.explanation && (
-          <button
-            onClick={() => setShowExplain(!showExplain)}
-            className="text-sm text-purple-400 hover:underline flex items-center gap-1"
+    <div className="w-full p-6 rounded-3xl bg-white/80 border shadow-xl space-y-4 text-gray-800 border-transparent transition-shadow hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:border-grey-400 duration-300">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+        <div className="flex items-center justify-between p-5 rounded-2xl border border-white/20 shadow-md backdrop-blur-lg bg-white/30 bg-gradient-to-br from-white/40 to-white/10 gap-4 min-h-[88px]">
+          <div className="flex items-center gap-3 w-[250px]">
+            <div className="bg-pink-100 text-pink-700 p-2 rounded-full">
+              <FileText size={20} />
+            </div>
+            <div className="truncate">
+              <h2 className="text-lg font-semibold truncate">JD #{jd_id}</h2>
+              <p className="text-sm text-gray-500 truncate">{job_title}</p>
+            </div>
+          </div>
+          <div className="flex gap-2 text-sm items-center w-[220px] justify-center">
+            <span className="px-4 py-1 text-sm font-medium bg-cyan-100 text-cyan-800 rounded-full shadow-sm">
+              Score: {(score * 100).toFixed(0)}%
+            </span>
+          </div>
+          <div className="w-[160px] flex justify-end pr-2">
+            <span
+              className={`text-xs font-semibold px-4 py-1 rounded-full border bg-white/60 text-gray-700 ${labelStyle}`}
+            >
+              {label}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center mt-3 flex-wrap gap-3">
+          <div className="flex gap-4 text-sm">
+            <button
+              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-purple-50 text-purple-600 hover:bg-purple-100 transition"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              Explain Match {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            </button>
+            {previewURL && (
+              <button
+                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 transition"
+                onClick={() => setShowPreview(!showPreview)}
+              >
+                <Eye size={16} /> {showPreview ? 'Hide Resume' : 'View Resume'}
+              </button>
+            )}
+          </div>
+          <motion.span
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className={`text-[2rem] font-extrabold leading-none ${
+              rank === 1
+                ? 'bg-gradient-to-r from-yellow-500 via-yellow-300 to-yellow-100 text-transparent bg-clip-text'
+                : rank === 2
+                ? 'bg-gradient-to-r from-gray-500 via-gray-300 to-gray-100 text-transparent bg-clip-text'
+                : 'bg-gradient-to-r from-orange-500 via-orange-300 to-yellow-200 text-transparent bg-clip-text'
+            }`}
           >
-            <Info className="w-4 h-4" />
-            {showExplain ? 'Hide Explain Match' : 'Show Explain Match'}
-          </button>
+            #{rank}
+          </motion.span>
+        </div>
+      </motion.div>
+
+      <div className="flex flex-wrap gap-2">
+        {skills.slice(0, 8).map((skill, i) => (
+          <span key={i} className="text-xs px-3 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-200">
+            {skill}
+          </span>
+        ))}
+        {skills.length > 8 && (
+          <span className="text-xs px-3 py-1 bg-gray-200 text-gray-700 rounded-full border">
+            +{skills.length - 8} more
+          </span>
         )}
-        <div className="ml-auto flex items-center gap-2">
-          <ThumbsUp
-            className={`w-5 h-5 cursor-pointer ${voted === 'up' ? 'text-green-400' : 'text-gray-400'}`}
-            onClick={() => handleFeedback('up')}
-          />
-          <ThumbsDown
-            className={`w-5 h-5 cursor-pointer ${voted === 'down' ? 'text-red-400' : 'text-gray-400'}`}
-            onClick={() => handleFeedback('down')}
+      </div>
+
+      {showPreview && previewURL && (
+        <div className="mt-4 border rounded-xl overflow-hidden shadow-lg h-[500px]">
+          <iframe
+            title="Resume Preview"
+            src={previewURL}
+            width="100%"
+            height="100%"
+            className="rounded-xl"
           />
         </div>
-      </div>
-   
-      {showExplain && match.explanation && (
-        <div className="mt-4 bg-gray-50 border border-gray-200 p-4 rounded-xl text-sm text-gray-800 space-y-3 transition-all duration-200">
-          {match.explanation.summary && (
-            <p>
-              <strong><Info className="inline w-4 h-4 mr-1" /> Summary:</strong> {match.explanation.summary}
-            </p>
+      )}
+
+      {/* Explanation: Always mounted, toggled via styles */}
+      <div
+        className={`transition-all duration-500 ease-in-out overflow-hidden rounded-xl space-y-4 text-sm ${
+          isExpanded ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="p-4 border-white">
+          {safeExplanation.gpt_summary && (
+            <div className="p-3 bg-purple-50 border border-purple-200 rounded-md">
+              <div className="flex items-center gap-2 mb-1 text-purple-800 font-semibold">
+                <Sparkles size={16} /> Summary
+              </div>
+              <div className="text-gray-800 whitespace-pre-line">{safeExplanation.gpt_summary}</div>
+            </div>
           )}
-          {match.explanation.skills_matched?.length > 0 && (
-            <p>
-              <strong><CheckCircle className="inline w-4 h-4 mr-1 text-green-600" /> Skills Matched:</strong>{' '}
-              <span className="text-green-700">{match.explanation.skills_matched.join(', ')}</span>
-            </p>
+
+          {safeExplanation.summary && (
+            <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
+              <div className="flex items-center gap-2 mb-1 text-blue-700 font-semibold">
+                <StickyNote size={16} /> Semantic Summary
+              </div>
+              <div>{safeExplanation.summary}</div>
+            </div>
           )}
-          {match.explanation.skills_missing?.length > 0 && (
-            <p>
-              <strong><AlertTriangle className="inline w-4 h-4 mr-1 text-yellow-600" /> Missing Skills:</strong>{' '}
-              <span className="text-red-600">{match.explanation.skills_missing.join(', ')}</span>
-            </p>
+
+          {safeExplanation.skills_matched?.length > 0 && (
+            <div className="p-3 bg-green-50 border border-green-200 rounded-md">
+              <div className="flex items-center gap-2 mb-1 text-green-700 font-semibold">
+                <BadgeCheck size={16} /> Matched Skills
+              </div>
+              <div className="text-sm">{safeExplanation.skills_matched.join(', ')}</div>
+            </div>
           )}
-          {match.explanation.resume_highlights?.length > 0 && (
-            <div>
-              <p className="font-semibold"><Pin className="inline w-4 h-4 mr-1 text-purple-500" /> Resume Highlights:</p>
-              <ul className="list-disc ml-5 text-gray-700">
-                {match.explanation.resume_highlights.map((highlight, i) => (
-                  <li key={i}>{highlight}</li>
+
+          {safeExplanation.skills_missing?.length > 0 && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+              <div className="flex items-center gap-2 mb-1 text-red-600 font-semibold">
+                <AlertTriangle size={16} /> Missing Skills
+              </div>
+              <div className="text-sm">{safeExplanation.skills_missing.join(', ')}</div>
+            </div>
+          )}
+
+          {safeExplanation.resume_highlights?.length > 0 && (
+            <div className="p-3 bg-indigo-50 border border-indigo-200 rounded-md">
+              <div className="flex items-center gap-2 mb-1 text-indigo-800 font-semibold">
+                <Pin size={16} /> Highlights
+              </div>
+              <ul className="list-disc ml-6 text-gray-800 leading-relaxed text-sm">
+                {safeExplanation.resume_highlights.map((point, i) => (
+                  <li key={i}>{point}</li>
                 ))}
               </ul>
             </div>
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -1,12 +1,72 @@
-import React from 'react';
-import { FileText, Users, Trophy, Mail, CheckCircle, XCircle, Brain } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
+import { FileText, Users, Trophy, Mail, Brain, CheckCircle, XCircle } from 'lucide-react';
 
-export default function LiveTracker({ jobTitle, progress = {}, topMatches = [], emailSent = false }) {
-  const { compared = false, ranked = false, emailed = false } = progress;
-  const recommendedMatches = topMatches.filter(m => m.score >= 0.5);
-const hasRecommended = recommendedMatches.length > 0;
+export default function LiveTracker({ jobTitle, jdId }) {
+  const [status, setStatus] = useState({
+    compared: false,
+    ranked: false,
+    recommended: false,
+    emailed: false,
+  });
 
+  const [topMatches, setTopMatches] = useState([]);
+  const [emailSent, setEmailSent] = useState(false);
+  const matchTriggeredRef = useRef(false);
+const recommendedMatches = topMatches.filter(m => m.score >= 0.5);
+
+  // ✅ Destructure status for easy use in JSX
+  const { compared, ranked, recommended, emailed } = status;
+
+  // 🧠 Poll JD status every 3s
+  useEffect(() => {
+    if (!jdId) return;
+
+    const intervalId = setInterval(async () => {
+      try {
+        const res = await axios.get(`http://127.0.0.1:5000/status/${jdId}`);
+        setStatus(res.data);
+
+        const emailRes = await axios.get(`http://127.0.0.1:5000/email/sent/${jdId}`);
+        setEmailSent(emailRes.data.emailed);
+
+        if (emailRes.data.emailed) {
+          clearInterval(intervalId); // Stop polling once emailed
+        }
+      } catch (err) {
+        console.error('Status poll failed:', err);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [jdId]);
+
+  // ⚡ Trigger match once
+  useEffect(() => {
+    if (!jdId || matchTriggeredRef.current) return;
+
+    const triggerMatch = async () => {
+      try {
+        const res = await axios.get(`http://127.0.0.1:5000/status/${jdId}`);
+        if (res.data.compared && res.data.ranked) {
+          matchTriggeredRef.current = true;
+          return;
+        }
+
+        const matchRes = await axios.post(`http://127.0.0.1:5000/match/jd-to-resumes`, {
+          jd_id: jdId,
+        });
+
+        setTopMatches(matchRes.data.top_matches || []);
+        matchTriggeredRef.current = true;
+      } catch (err) {
+        console.error('Match trigger failed:', err);
+      }
+    };
+
+    triggerMatch();
+  }, [jdId]);
 
   const steps = [
     {
@@ -24,14 +84,14 @@ const hasRecommended = recommendedMatches.length > 0;
     {
       name: 'Intelligent Ranking',
       icon: Trophy,
-     active: hasRecommended,
-failed: !hasRecommended && ranked,
-details: hasRecommended
+     active: recommended,
+failed: !recommended && ranked,
+details: recommended
   ? `✓ ${recommendedMatches.length} profile${recommendedMatches.length > 1 ? 's' : ''} recommended`
   : '⚠ No profiles met the quality threshold',
 
     },
-    {
+   {
       name: 'Email Sent',
       icon: Mail,
       active: emailed && emailSent,
@@ -45,33 +105,32 @@ details: hasRecommended
   const progressPercent = currentIndex === -1 ? 100 : (currentIndex / steps.length) * 100;
 
   return (
-    <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-8 shadow-2xl space-y-10 border border-gray-300">
-      {/* Premium Header */}
-      <h3 className="text-2xl font-extrabold text-center text-gray-800 tracking-wide flex items-center justify-center gap-2 mb-4">
-        {emailSent ? (
+    <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl space-y-10 border border-gray-300">
+      <h3 className="text-xl sm:text-2xl font-extrabold text-center text-gray-800 tracking-wide flex items-center justify-center gap-2">
+        {emailed ? (
           <>
             <Brain
               size={28}
               className={`${
-                hasRecommended
+                recommended
                   ? 'text-green-600 drop-shadow-[0_0_5px_rgba(34,197,94,0.6)]'
                   : 'text-yellow-500 drop-shadow-[0_0_5px_rgba(250,204,21,0.6)]'
               }`}
             />
-            <span
+           <span
               className={`${
-                hasRecommended ? 'text-green-700' : 'text-yellow-700'
+                recommended ? 'text-green-700' : 'text-yellow-700'
               } flex items-center gap-2`}
             >
-              {hasRecommended ? 'Recognised' : 'Notified'}
+              {recommended ? 'Recognised' : 'Notified'}
               <span
                 className={`inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full shadow-sm animate-pulse ${
-                  hasRecommended
+                  recommended
                     ? 'bg-gradient-to-r from-yellow-300 to-yellow-500 text-yellow-800'
                     : 'bg-yellow-100 text-yellow-800 border border-yellow-300'
                 }`}
               >
-                {hasRecommended ? '🏅 Top Match' : '⚠ No Recommended Profiles'}
+                {recommended ? '🏅 Top Match' : '⚠ No Recommended Profiles'}
               </span>
             </span>
           </>
@@ -82,19 +141,16 @@ details: hasRecommended
               animate={{ rotate: [0, 15, -15, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Brain size={28} className="text-purple-600 drop-shadow-[0_0_5px_rgba(150,0,255,0.6)]" />
+              <Brain className="w-6 h-6 text-purple-600 drop-shadow-[0_0_5px_rgba(150,0,255,0.6)]" />
             </motion.span>
-            <span className="!text-gray-900">
-              Matching for{' '}
-              <span className="bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-500 bg-clip-text text-transparent">
-                {jobTitle}
-              </span>
+            <span className="text-gray-900">
+              Matching for <span className="text-purple-600">{jobTitle}</span>
             </span>
           </>
         )}
       </h3>
 
-      {/* Glowing Progress Bar */}
+      {/* Progress Bar */}
       <div className="relative w-full h-20">
         <div className="absolute top-[36px] left-0 w-full h-1 bg-gray-200 rounded-full z-0" />
 
@@ -135,7 +191,7 @@ details: hasRecommended
           />
         </div>
 
-        {!emailSent && (
+        {!emailed && (
           <motion.div
             className="absolute top-[24px] w-6 h-6 rounded-full bg-cyan-400 shadow-[0_0_15px_5px_rgba(0,255,255,0.6)] animate-pulse z-30"
             animate={{ left: `calc(${progressPercent}% - 12px)` }}
@@ -163,13 +219,13 @@ details: hasRecommended
                   <step.icon className="text-white w-5 h-5" />
                 )}
               </div>
-              <div className="mt-2 text-sm text-center font-semibold text-gray-700">{step.name}</div>
+              <div className="mt-2 text-xs sm:text-sm text-center font-semibold text-gray-700">{step.name}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Step Description */}
+      {/* Description */}
       <div className="text-center mt-4">
         {steps
           .slice()
@@ -182,7 +238,7 @@ details: hasRecommended
             transition={{ duration: 1.0 }}
             className="inline-block bg-white/30 px-6 py-3 rounded-xl border border-white/40 backdrop-blur-md shadow-xl"
           >
-            <div className="text-base text-gray-900 italic tracking-wide font-medium">
+            <div className="text-sm sm:text-base text-gray-900 italic tracking-wide font-medium">
               {
                 steps
                   .slice()

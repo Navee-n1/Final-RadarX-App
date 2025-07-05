@@ -9,6 +9,8 @@ import UploadJDPage from './pages/uploadJDPage';
 import ResumeToJDPage from './pages/ResumeToJDPage';
 import RecruiterDashboard from './pages/RecruiterDashboard';
 import OneToOneMatchSection from './components/OneToOneMatchSection';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminLoginPage from './pages/AdminLoginPage';
 
 const App = () => {
   const handleLogout = () => {
@@ -22,6 +24,17 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<LoginPage />} />
+         <Route path="/frontman" element={<AdminLoginPage />} />
+         <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute requiredRole="admin">
+              <AdminDashboard onLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+
+
 
         <Route
           path="/recruiter-dashboard"
@@ -72,6 +85,11 @@ const App = () => {
               </ARDashboardLayout>
             </ProtectedRoute>
           }
+          
+
+
+
+
         />
 
         

@@ -17,9 +17,9 @@ const skillColorClasses = [
   'bg-green-100 text-green-800',
   'bg-yellow-100 text-yellow-800',
   'bg-orange-100 text-orange-800',
-  
   'bg-indigo-100 text-indigo-800',
 ];
+
 function getSkillColor(skill) {
   let hash = 0;
   for (let i = 0; i < skill.length; i++) {
@@ -28,7 +28,6 @@ function getSkillColor(skill) {
   const index = Math.abs(hash) % skillColorClasses.length;
   return skillColorClasses[index];
 }
-
 
 export default function SearchResultsCard({ results, viewMode = 'grid' }) {
   if (!results || results.length === 0) {
@@ -42,10 +41,10 @@ export default function SearchResultsCard({ results, viewMode = 'grid' }) {
   }
 
   return (
-    <div className={viewMode === 'grid' ? "grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" : "space-y-4 mt-6"}>
+    <div className={viewMode === 'grid' ? 'grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6' : 'space-y-4 mt-6'}>
       {results.map((p, i) => {
         const avatarColor = avatarColors[i % avatarColors.length];
-        const skills = (p.skills?.split(',') || []).map(skill => skill.trim());
+        const skills = (p.skills?.split(',') || []).map((s) => s.trim());
 
         return (
           <div
@@ -54,33 +53,37 @@ export default function SearchResultsCard({ results, viewMode = 'grid' }) {
               viewMode === 'grid' ? 'hover:scale-[1.02]' : ''
             }`}
           >
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between flex-wrap gap-3">
               <div className="flex items-center space-x-4">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${avatarColor} text-white flex items-center justify-center text-lg font-bold`}>
-                  {p.name?.charAt(0) ?? 'U'}
+                <div
+                  className={`w-12 h-12 rounded-full bg-gradient-to-r ${avatarColor} text-white flex items-center justify-center text-lg font-bold`}
+                >
+                  {p.name?.charAt(0).toUpperCase() || 'U'}
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-800 text-lg">
-                    {p.name} <span className="text-sm text-gray-500">({p.emp_id})</span>
+                    {p.name || 'Unnamed'}{' '}
+                    <span className="text-sm text-gray-500">({p.emp_id || 'N/A'})</span>
                   </h3>
-                  <p className="text-sm text-gray-600">{p.vertical}</p>
+                  <p className="text-sm text-gray-600">{p.vertical || 'Others'}</p>
                 </div>
               </div>
-              <div className="text-sm text-gray-700 font-medium">{p.experience_years} yrs</div>
+              <div className="text-sm text-gray-700 font-medium">
+                {p.experience_years != null ? `${p.experience_years} yrs` : 'Experience N/A'}
+              </div>
             </div>
 
             <div className="mt-4">
               <p className="text-sm font-medium text-gray-700 mb-1">Skills</p>
-              <div className="flex flex-wrap gap-2">
-                {(p.skills?.split(',') || []).map((skill, idx) => (
-  <span
-    key={idx}
-    className={`px-3 py-1 rounded-full text-xs font-medium shadow-sm ${getSkillColor(skill.trim())}`}
-  >
-    {skill.trim()}
-  </span>
-))}
-
+              <div className="flex flex-wrap gap-2 max-h-24 overflow-y-auto pr-1">
+                {skills.map((skill, idx) => (
+                  <span
+                    key={idx}
+                    className={`px-3 py-1 rounded-full text-xs font-medium shadow-sm ${getSkillColor(skill)}`}
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import MatchCard from '../components/MatchCard';
-import { UserSearch, UploadCloud, LoaderCircle } from 'lucide-react';
+import { UserSearch, UploadCloud, LoaderCircle,DocumentTimeline, Vote, VoteIcon } from 'lucide-react';
 
 export default function ResumeMatchSection() {
   const [resumeFile, setResumeFile] = useState(null);
@@ -10,46 +10,39 @@ export default function ResumeMatchSection() {
   const [loading, setLoading] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState(null);
 
-  const handleUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    setResumeFile(file.name);
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('name', file.name);
-
-    const res = await axios.post('http://127.0.0.1:5000/upload-resume', formData);
-    setResumeId(res.data.resume_id);
-    setMatches([]);
-  };
 
   const runMatch = async () => {
     if (!resumeId) return;
     setLoading(true);
+    setMatches([]);
+    setExpandedIndex(null);
 
-    const res = await axios.post(
-      'http://127.0.0.1:5000/match/resume-to-jds',
-      { resume_id: resumeId }
-    );
+    try {
+      const res = await axios.post('http://127.0.0.1:5000/match/resume-to-jds', { resume_id: resumeId });
+      // Remove duplicates by jd_id (or fallback to jd_file)
+      const seen = new Set();
+      const unique = [];
 
-    const seen = new Set();
-    const uniqueMatches = [];
-
-    for (const match of res.data.top_matches) {
-      const id = match.jd_id || match.jd_file;
-      if (!seen.has(id)) {
-        seen.add(id);
-        uniqueMatches.push(match);
+      for (const m of res.data.top_matches) {
+        const id = m.jd_id || m.jd_file;
+        if (!seen.has(id)) {
+          seen.add(id);
+          unique.push(m);
+        }
       }
-    }
 
-    setMatches(uniqueMatches);
-    setLoading(false);
+      setMatches(unique);
+    } catch (error) {
+      console.error(error);
+      alert('❌ Matching failed.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex flex-col items-center px-4 py-16 text-gray-800">
+      {/* Header */}
       <div className="text-center space-y-6 mb-10">
         <div className="relative inline-flex items-center justify-center">
           <div className="absolute animate-ping-slow inline-flex h-16 w-16 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 opacity-30 blur-2xl"></div>
@@ -62,13 +55,62 @@ export default function ResumeMatchSection() {
         </h1>
       </div>
 
+      {/* Upload & Match Controls */}
       <div className="w-full max-w-xl space-y-4">
         <label className="block bg-white-200 hover:bg-purple-100 border border-purple-300 text-gray-700 font-medium px-6 py-4 rounded-xl cursor-pointer text-center transition-all">
-          <UploadCloud className="inline-block mr-2 mb-1 text-purple-500" size={20} />
-          Upload Resume File
-          <input type="file" className="hidden" onChange={handleUpload} />
-        </label>
-        {resumeFile && <p className="text-sm text-center text-purple-700">✅ {resumeFile}</p>}
+  <UploadCloud className="inline-block mr-2 mb-1 text-purple-500" size={20} />
+  Upload Resume File
+  <input
+    type="file"
+    className="hidden"
+    accept=".pdf,.doc,.docx"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ];
+      const maxSize = 3 * 1024 * 1024; // 3MB
+
+      if (!allowedTypes.includes(file.type)) {
+        alert('❌ Invalid file type. Only PDF, DOC, DOCX allowed.');
+        return;
+      }
+
+      if (file.size > maxSize) {
+        alert('❌ File too large. Must be under 3MB.');
+        return;
+      }
+
+      setResumeFile(file.name);
+      setMatches([]);
+      setResumeId(null);
+      setExpandedIndex(null);
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('name', file.name);
+
+      axios
+        .post('http://127.0.0.1:5000/upload-resume', formData)
+        .then((res) => setResumeId(res.data.resume_id))
+        .catch((error) => {
+          console.error(error);
+          alert('❌ Resume upload failed.');
+        });
+    }}
+  />
+</label>
+
+
+        {resumeFile && (
+          <p className="text-sm text-center text-purple-700 font-medium">
+            ✅ {resumeFile}
+          </p>
+        )}
 
         <button
           onClick={runMatch}
@@ -89,16 +131,25 @@ export default function ResumeMatchSection() {
         </button>
       </div>
 
+      {/* Results */}
       {matches.length > 0 && (
-        <div className="mt-16 w-full max-w-5xl">
-          <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center tracking-tight">
-            🏆 Top JD Matches
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {matches.map((match, i) => (
-  <MatchCard key={i} match={match} />
-))}
-
+        <div className="mt-16 w-full max-w-6xl px-4">
+           <h3 className="mt-12 text-3xl font-extrabold text-center tracking-tight text-gray-900 flex items-center justify-center gap-3">
+            <VoteIcon className="w-8 h-8 text-sky-500 drop-shadow-md" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-sky-500 to-purple-500 animate-gradient-x drop-shadow-sm">
+              TOP 3 JD MATCHES
+            </span>
+          </h3><br></br><br></br>
+         
+           <div className="space-y-4">
+            {matches.map((match, i) => (
+              <MatchCard
+                key={i}
+                match={{ ...match, rank: i + 1 }}
+                isExpanded={expandedIndex === i}
+                onToggleExplain={() => setExpandedIndex(prev => (prev === i ? null : i))}
+              />
+            ))}
           </div>
         </div>
       )}

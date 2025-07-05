@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
-import { Plus, Minus, Send, X, Mail, AlertTriangle } from 'lucide-react';
+import { Plus, Minus, Send, X, Mail, AlertTriangle, Loader } from 'lucide-react';
 
 export default function EmailModal({ toEmail, cc, setCc, onSend, onClose, hasStrongMatch = true }) {
   const [newCc, setNewCc] = useState('');
   const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
   const ccArray = cc.split(',').map(e => e.trim()).filter(Boolean);
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const handleAddCc = () => {
-    if (newCc && !ccArray.includes(newCc)) {
-      setCc([...ccArray, newCc].join(', '));
-      setNewCc('');
+    if (!newCc) return;
+    if (!emailRegex.test(newCc)) {
+      setError('Invalid email format');
+      return;
     }
+    if (ccArray.includes(newCc)) {
+      setError('Email already added');
+      return;
+    }
+    setCc([...ccArray, newCc].join(', '));
+    setNewCc('');
+    setError('');
   };
 
   const handleRemoveCc = (email) => {
@@ -28,7 +39,7 @@ export default function EmailModal({ toEmail, cc, setCc, onSend, onClose, hasStr
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
       <div className="relative w-full max-w-md bg-white rounded-2xl border border-gray-300 shadow-2xl p-6 space-y-6 text-gray-800">
-        
+
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -64,7 +75,10 @@ export default function EmailModal({ toEmail, cc, setCc, onSend, onClose, hasStr
               <input
                 type="text"
                 value={newCc}
-                onChange={(e) => setNewCc(e.target.value)}
+                onChange={(e) => {
+                  setNewCc(e.target.value);
+                  setError('');
+                }}
                 placeholder="Add email"
                 className="flex-1 px-3 py-2 rounded-md border border-gray-300 text-sm"
               />
@@ -75,6 +89,10 @@ export default function EmailModal({ toEmail, cc, setCc, onSend, onClose, hasStr
                 <Plus size={16} />
               </button>
             </div>
+
+            {error && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
 
             <div className="mt-3 flex flex-wrap gap-2">
               {ccArray.map((email, i) => (
@@ -108,8 +126,17 @@ export default function EmailModal({ toEmail, cc, setCc, onSend, onClose, hasStr
                 : 'bg-gradient-to-r from-sky-500 to-purple-500 hover:from-sky-600 hover:to-purple-600'
             }`}
           >
-            <Send size={18} />
-            {sending ? 'Sending...' : 'Send Email'}
+            {sending ? (
+              <>
+                <Loader size={18} className="animate-spin" />
+                Sending...
+              </>
+            ) : (
+              <>
+                <Send size={18} />
+                Send Email
+              </>
+            )}
           </button>
         </div>
       </div>
