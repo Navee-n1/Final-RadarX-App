@@ -150,3 +150,120 @@ def send_manual_email():
 def check_email_sent(jd_id):
     sent = EmailLog.query.filter_by(jd_id=jd_id).first() is not None
     return jsonify({"emailed": sent})
+
+
+#duplicate of send mauel email
+@email_bp.route('/send-email/matches-final', methods=['POST'])
+def send_manual_email_final():
+    try:
+        data = request.json
+        jd_id = data.get('jd_id')
+        to_email = data.get('to_email')
+        cc_list = data.get('cc_list', [])
+        attachments = data.get('attachments', [])
+        top_matches = data.get('top_matches', [])
+        job_title = data.get('job_title', 'the uploaded Job Description')
+        start = time.time()
+ 
+        logger.info(f"Manual email triggered for JD ID {jd_id} to {to_email} with {len(top_matches)} matches.")
+ 
+        if not jd_id or not to_email:
+            logger.warning("Missing jd_id or to_email in request.")
+            return jsonify({"error": "Missing required fields"}), 400
+ 
+        # Ensure labels exist
+        for m in top_matches:
+            if "label" not in m:
+                m["label"] = get_label(m.get("score", 0))
+ 
+        recommended = [m for m in top_matches if m["label"] in [
+            "✅ Highly Recommended",
+            "☑️ Recommended",
+            "🟡 Decent – Can Explore"
+        ]]
+        has_matches = bool(recommended)
+ 
+        subject = f"Top Matches for {job_title}" if has_matches else f"No Strong Matches Found for {job_title}"
+        valid_attachments = [f for f in attachments if f and os.path.exists(f)] if has_matches else []
+ 
+        if not has_matches:
+            logger.info("No recommended matches. Email will be sent without attachments.")
+        else:
+            logger.info(f"Valid attachments: {valid_attachments}")
+ 
+        _, html_body = build_match_summary_html(top_matches, job_title)
+ 
+        status = send_email_with_attachments(
+            subject=subject,
+            to_email=to_email,
+            cc_list=cc_list,
+            html_body=html_body,
+            attachments=valid_attachments
+        )
+ 
+        latency = round(time.time() - start, 4)
+ 
+        # ✅ Log the email
+        email_log = EmailLog(
+            jd_id=jd_id,
+            sent_to=to_email,
+            cc=", ".join(cc_list),
+            status="Sent" if "success" in status.lower() else "Failed",
+            pdf_path=", ".join(valid_attachments) if valid_attachments else None,
+            latency=latency
+        )
+        db.session.add(email_log)
+        db.session.commit()
+        logger.info("Email log saved to database.")
+ 
+        # ✅ Update JD status to 'Completed' if it was in 'Review'
+        try:
+            jd = JD.query.get(jd_id)
+            if jd and jd.status == 'Review':
+                jd.status = 'Completed'
+                db.session.commit()
+                logger.info(f"✅ JD ID {jd_id} status updated to Completed after email sent.")
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f"❌ Failed to update JD status to Completed: {e}", exc_info=True)
+ 
+        return jsonify({"message": status})
+ 
+    except Exception as e:
+        logger.error(f"Failed to send email: {e}", exc_info=True)
+        log_agent_error("EmailError", str(e), method="send-email/matches-final")
+        return jsonify({"error": "Internal Server Error"}), 500
+    
+@email_bp.route('/send-email/recommended-profile', methods=['POST'])
+def send_email_to_consultant():
+    try:
+        data = request.json
+        to_email = data.get('to_email')
+        from_email = data.get('from_email')  # recruiter
+        cc_list = data.get('cc_list', [])
+        jd_id = data.get('jd_id')
+        consultant_name = data.get('consultant_name')
+        job_title = data.get('job_title', 'your role')
+ 
+        subject = f"Opportunity Matching Your Profile - {job_title}"
+        html_body = f"""
+        <html><body>
+        <p>Dear {consultant_name},</p>
+        <p>We found a job opening that matches your profile for the role of <b>{job_title}</b>.</p>
+        <p>Please let us know your interest to proceed further.</p>
+        <p>Regards,<br>{from_email}</p>
+        </body></html>
+        """
+ 
+        status = send_email_with_attachments(
+            subject=subject,
+            to_email=to_email,
+            cc_list=cc_list,
+            html_body=html_body,
+            attachments=[]
+        )
+ 
+        return jsonify({"message": status})
+    except Exception as e:
+        log_agent_error("SendConsultantEmail", str(e), method="send-email/recommended-profile")
+        return jsonify({"error": "Internal Server Error"}), 500

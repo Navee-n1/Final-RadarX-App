@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
 
 from sqlalchemy import or_
-
+from utils.parser import extract_text
+from utils.skill_extractor import extract_skills
 from models import JD, MatchResult, Profile
 from sqlalchemy.orm import joinedload
 
@@ -92,22 +93,3 @@ def get_matches_for_jd(jd_id):
     })
 
 
-@profile_bp.route('/jds/filterable', methods=['GET'])
-def get_filterable_jds():
-    jds = (
-        JD.query
-        .join(MatchResult, MatchResult.jd_id == JD.id)
-        .filter(MatchResult.match_type == 'jd-to-profile')
-        .distinct()
-        .order_by(JD.created_at.desc())
-        .all()
-    )
-
-    return jsonify([
-        {
-            "id": jd.id,
-            "job_title": jd.job_title or "No Title",
-            "project_code": jd.project_code or "N/A",
-            "uploaded_by": jd.uploaded_by or "Unknown"
-        } for jd in jds
-    ])

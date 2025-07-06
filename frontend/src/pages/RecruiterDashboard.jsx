@@ -39,6 +39,7 @@ export default function RecruiterDashboard() {
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [summary, setSummary] = useState({ profiles: 0, jds: 0, matches: 0 });
   const [agentHealth, setAgentHealth] = useState('Checking...');
+  const [email, setEmail] = useState('');
 
 
  useEffect(() => {
@@ -99,6 +100,7 @@ const handleResumeUpload = (e) => {
     formData.append('name', name);
     formData.append('vertical', vertical);
     formData.append('experience_years', experience);
+    formData.append('email',email);
     try {
       await axios.post('http://127.0.0.1:5000/upload-profile', formData);
       setStatus('✅ Profile uploaded successfully');
@@ -263,6 +265,12 @@ const handleResumeUpload = (e) => {
         onChange={(e) => setName(e.target.value)}
         className="w-full border px-3 py-2 rounded"
       />
+      <input
+  placeholder="Email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  className="w-full border px-3 py-2 rounded"
+/>
       <select
         value={vertical}
         onChange={(e) => setVertical(e.target.value)}

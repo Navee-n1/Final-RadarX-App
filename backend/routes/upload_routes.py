@@ -30,33 +30,36 @@ os.makedirs(UPLOAD_FOLDER_RESUME, exist_ok=True)
 @upload_bp.route('/uploads/resumes/<path:filename>')
 def serve_resume(filename):
     return send_from_directory(os.path.join(os.getcwd(), 'uploads', 'resumes'), filename)
-
-
-
+ 
+ 
+ 
 @upload_bp.route('/jds/filterable', methods=['GET'])
 def get_jds_for_filters():
+    from utils.skill_extractor import extract_skills
+    from utils.parser import extract_text
+    import re
+ 
     clean_jds = []
-
+ 
     for jd in JD.query.all():
-        jd_text = extract_text(jd.file_path) or ""  # <-- null-safe fallback
+        jd_text = jd.extracted_text or extract_text(jd.file_path) or ""
+ 
+        # Extract skills
         skills = extract_skills(jd_text)
-
-        # Clean skills
         cleaned_skills = [s.lower() for s in skills if len(s) > 2 and s.isascii() and s.isalnum()]
-
-        # Experience extraction
+ 
+        # Extract experience
         experience_match = re.search(r'(\d+)\s*\+?\s*(years|yrs)', jd_text.lower())
         if experience_match:
             experience = int(experience_match.group(1))
         elif "fresher" in jd_text.lower():
             experience = 0
         else:
-            experience = 1
-
-        status = "Open" if jd.id % 2 == 0 else "Review"
-
-        print(f"JD ID: {jd.id}, Skills: {cleaned_skills}, Experience: {experience}")
-
+            experience = 3  # <-- ✅ fallback to 3, not 1
+ 
+        # ✅ Use real DB status from jd.status, fallback to "Pending" if not set
+        status = jd.status or "Pending"
+ 
         clean_jds.append({
             "id": jd.id,
             "job_title": jd.job_title or "No Title",
@@ -64,12 +67,12 @@ def get_jds_for_filters():
             "project_code": jd.project_code,
             "skills": cleaned_skills[:10],
             "experience": experience,
-            "status": status,
+            "status": status,  # ✅ Real status used here
             "created_at": jd.created_at.strftime("%Y-%m-%d %H:%M:%S")
         })
-
+ 
     return jsonify(clean_jds)
-
+ 
 
     
 # Upload JD (with embedding)
@@ -150,52 +153,51 @@ def upload_profile():
         emp_id = request.form.get('emp_id')
         name = request.form.get('name')
         vertical = request.form.get('vertical', 'N/A')
+        email = request.form.get('email')  # ✅ NEW
         manual_skills = request.form.get('skills')
         manual_experience = request.form.get('experience_years')
-
-        if not all([file, emp_id, name]):
-            return jsonify({"error": "Missing emp_id, name or file"}), 400
-
+ 
+        if not all([file, emp_id, name, email]):
+            return jsonify({"error": "Missing emp_id, name, email or file"}), 400
+ 
         filename = secure_filename(file.filename or f"{emp_id}_resume.pdf")
         save_path = os.path.join(UPLOAD_FOLDER_RESUME, filename)
         file.save(save_path)
-
+ 
         text = extract_text(save_path)
         if not text:
             raise ValueError("Resume unreadable or empty")
-
+ 
         embedding = generate_embedding(text)
-
         skills_to_use = manual_skills.strip() if manual_skills else ", ".join(extract_skills(text))
+ 
         try:
             experience_years = float(manual_experience.strip()) if manual_experience else estimate_experience(text)
         except:
             experience_years = estimate_experience(text)
-
+ 
+        # Remove existing profile with same emp_id
         existing = Profile.query.filter_by(emp_id=emp_id).first()
         if existing:
             db.session.delete(existing)
             db.session.commit()
-
+ 
         profile = Profile(
             emp_id=emp_id,
             name=name,
+            email=email,
             vertical=vertical,
             skills=skills_to_use,
             experience_years=experience_years,
-            resume_path=f"/uploads/resumes/{filename}",  # for Profile
+            resume_path=f"/uploads/resumes/{filename}",
             extracted_text=text,
             embedding_vector=json.dumps(embedding)
         )
-
+ 
         db.session.add(profile)
         db.session.commit()
-
-        return jsonify({
-            "message": "Profile uploaded",
-            "profile_id": profile.id
-        })
-
+        return jsonify({ "message": "Profile uploaded", "profile_id": profile.id })
+ 
     except Exception as e:
         log_agent_error("UploadProfileError", str(e), method="upload-profile")
         return jsonify({"error": "Profile upload failed"}), 500

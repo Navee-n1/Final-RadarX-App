@@ -17,6 +17,7 @@ class User(db.Model):
 # ─────────────── JOB DESCRIPTIONS ────────────────
 class JD(db.Model):
     __tablename__ = 'jd'
+ 
     id = Column(Integer, primary_key=True)
     file_path = Column(String, nullable=False)
     uploaded_by = Column(String)
@@ -25,7 +26,9 @@ class JD(db.Model):
     extracted_text = Column(Text)
     embedding_vector = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
-
+ 
+    status = Column(String, default="Pending")  # ✅ New column for tracking JD status
+ 
     match_results = db.relationship('MatchResult', backref='jd', lazy=True)
 
 
@@ -35,6 +38,7 @@ class Profile(db.Model):
     id = Column(Integer, primary_key=True)
     emp_id = Column(String, unique=True, nullable=False)
     name = Column(String, nullable=False)
+    email=Column(String,nullable=False)
     vertical = Column(String)
     skills = Column(Text)
     experience_years = Column(Float)

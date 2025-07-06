@@ -160,3 +160,186 @@
 [2025-07-05 22:38:32] INFO: JD-to-Resumes Match Request Received for JD ID: 17
 [2025-07-05 22:38:32] INFO: Matching completed. Returning top 3 profiles.
 [2025-07-05 22:38:32] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:16:29] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 02:16:29] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 02:16:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:16:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:16:31] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 02:16:31] DEBUG:  CC List: []
+[2025-07-06 02:16:31] DEBUG: Attachments: []
+[2025-07-06 02:17:18] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 02:17:18] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 02:17:20] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:17:20] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:17:20] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 02:17:20] DEBUG:  CC List: []
+[2025-07-06 02:17:20] DEBUG: Attachments: []
+[2025-07-06 02:17:47] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 02:17:48] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 02:17:50] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:17:50] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:17:50] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 02:17:50] DEBUG:  CC List: []
+[2025-07-06 02:17:50] DEBUG: Attachments: []
+[2025-07-06 02:18:13] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 02:18:13] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 02:18:13] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:18:13] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 02:18:13] DEBUG:  CC List: []
+[2025-07-06 02:18:13] DEBUG: Attachments: []
+[2025-07-06 02:18:13] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:18:45] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 02:18:45] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 02:18:48] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:18:48] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:45:17] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 02:45:18] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:45:22] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 02:45:24] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 02:45:24] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:45:24] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:45:25] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 02:45:27] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 02:45:27] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:45:29] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:52:50] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 02:52:51] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:53:20] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 02:53:20] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:00] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
+[2025-07-06 02:54:00] DEBUG:  CC List: []
+[2025-07-06 02:54:00] DEBUG: Attachments: []
+[2025-07-06 02:54:35] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 02:54:37] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 02:54:39] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 02:54:40] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:41] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:41] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 02:54:42] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:44] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:46] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 02:54:48] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 02:54:49] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:51] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:54:52] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 02:54:55] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:55:00] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 02:55:05] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:55:06] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 02:55:10] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 02:55:17] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 02:55:17] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:05:13] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 03:05:15] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 03:05:16] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 03:05:16] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:05:18] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:05:19] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:06:29] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 03:06:29] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 03:06:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:06:31] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:06:31] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 03:06:31] DEBUG:  CC List: []
+[2025-07-06 03:06:31] DEBUG: Attachments: []
+[2025-07-06 03:07:02] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 03:07:07] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:13] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 03:07:18] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:21] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 03:07:21] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:26] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 03:07:28] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:36] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 03:07:36] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:39] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 03:07:43] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:50] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 03:07:54] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:07:57] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 03:08:01] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:08:14] INFO: JD-to-Resumes Match Request Received for JD ID: 5
+[2025-07-06 03:08:17] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:08:26] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 03:08:28] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:08:32] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 03:08:35] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 03:08:35] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 03:08:39] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 11:02:06] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 11:02:11] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:43:18] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 12:43:18] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 12:43:20] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:43:20] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:44:07] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 12:44:07] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 12:44:11] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:44:11] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 12:44:11] DEBUG:  CC List: []
+[2025-07-06 12:44:11] DEBUG: Attachments: []
+[2025-07-06 12:44:11] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:44:41] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 12:44:41] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 12:44:43] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:44:43] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 12:44:43] DEBUG:  CC List: []
+[2025-07-06 12:44:43] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:44:43] DEBUG: Attachments: []
+[2025-07-06 12:45:01] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 12:45:01] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 12:45:01] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:45:01] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 12:45:01] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 12:45:01] DEBUG:  CC List: []
+[2025-07-06 12:45:01] DEBUG: Attachments: []
+[2025-07-06 12:45:33] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 12:45:34] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 13:22:48] ERROR: Email Error: Connection unexpectedly closed
+[2025-07-06 13:22:48] ERROR: Email Error: Connection unexpectedly closed
+[2025-07-06 13:22:48] ERROR: Email Error: Connection unexpectedly closed
+[2025-07-06 13:23:15] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 13:23:17] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 13:23:22] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 13:23:24] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 13:23:31] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 13:23:34] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 13:23:36] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 13:23:38] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 13:23:43] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 13:23:45] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 13:23:50] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 13:23:50] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:11:41] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 14:11:41] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 14:11:43] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:11:43] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:08] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 14:12:08] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 14:12:10] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:11] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:11] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 14:12:11] DEBUG:  CC List: []
+[2025-07-06 14:12:11] DEBUG: Attachments: []
+[2025-07-06 14:12:27] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 14:12:27] INFO: JD-to-Resumes Match Request Received for JD ID: 3
+[2025-07-06 14:12:29] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:29] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:29] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 14:12:29] DEBUG:  CC List: []
+[2025-07-06 14:12:29] DEBUG: Attachments: []
+[2025-07-06 14:12:47] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 14:12:47] INFO: JD-to-Resumes Match Request Received for JD ID: 4
+[2025-07-06 14:12:47] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:48] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 14:12:48] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 14:12:48] DEBUG:  CC List: []
+[2025-07-06 14:12:48] DEBUG: Attachments: []
+[2025-07-06 14:13:49] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 14:13:51] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 15:05:54] INFO: JD-to-Resumes Match Request Received for JD ID: 2
+[2025-07-06 15:05:57] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 15:06:05] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 15:06:07] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 15:21:45] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 15:21:46] INFO: Matching completed. Returning top 3 profiles.
