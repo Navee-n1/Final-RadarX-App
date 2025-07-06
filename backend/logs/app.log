@@ -343,3 +343,23 @@
 [2025-07-06 15:06:07] INFO: Matching completed. Returning top 3 profiles.
 [2025-07-06 15:21:45] INFO: JD-to-Resumes Match Request Received for JD ID: 1
 [2025-07-06 15:21:46] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 16:08:33] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 16:08:34] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 16:08:51] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
+[2025-07-06 16:08:52] DEBUG:  CC List: ['maheshmurari001@gmail.com']
+[2025-07-06 16:08:52] DEBUG: Attachments: []
+[2025-07-06 16:08:55] INFO: Email sent successfully to: addepallinaveenkumar85@gmail.com
+[2025-07-06 16:10:25] INFO: JD-to-Resumes Match Request Received for JD ID: 1
+[2025-07-06 16:10:26] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 16:10:39] INFO:  Preparing to send email to: addepallinaveenkumar85@gmail.com
+[2025-07-06 16:10:39] DEBUG:  CC List: []
+[2025-07-06 16:10:39] DEBUG: Attachments: []
+[2025-07-06 16:10:42] INFO: Email sent successfully to: addepallinaveenkumar85@gmail.com
+[2025-07-06 16:13:26] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 16:13:26] INFO: JD-to-Resumes Match Request Received for JD ID: 6
+[2025-07-06 16:13:27] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 16:13:27] INFO: Matching completed. Returning top 3 profiles.
+[2025-07-06 16:14:27] INFO:  Preparing to send email to: maheshmurari001@gmail.com
+[2025-07-06 16:14:27] DEBUG:  CC List: ['addepallinaveenkumar85@gmail.com']
+[2025-07-06 16:14:27] DEBUG: Attachments: []
+[2025-07-06 16:14:30] INFO: Email sent successfully to: maheshmurari001@gmail.com
